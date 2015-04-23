@@ -771,6 +771,7 @@ Danger
 ** Todo admonition
 
 # See example at http://docs.ckan.org/en/latest/contributing/python.html
+# or http://wsgiservice.readthedocs.org/en/latest/todo.html
 
 Simple box ("inline task"):
 
