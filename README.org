@@ -115,6 +115,12 @@ The ~ALT_TITLE~ property allows to set an alternate title (shorter, for example)
 for a given headline in the table of contents and other running heads.
 #+end_note
 
+To insert the TOC at some random place, use:
+
+#+begin_src org :eval never-export
+,#+TOC: headlines 2
+#+end_src
+
 ** List of figures
 
 ~#+TOC: figures~ is not implemented yet in the HMTL backend.
