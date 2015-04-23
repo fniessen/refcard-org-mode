@@ -25,7 +25,7 @@
 
 * Summary
 
-# See https://tutorialtodoapp.readthedocs.org/en/latest/
+# See https://tutorialtodoapp.readthedocs.org/en/latest/ for nice home page!
 
 #+begin_sidebar
 *You will learn to:*
@@ -33,6 +33,7 @@
 - write your docs in Org mode
 - create tables
 - create custom code blocks
+- and much more!
 #+end_sidebar
 
 #+begin_abstract
