@@ -1278,10 +1278,9 @@ Similarly, you can incorporate JS or do anything else you can do in a Web page
 You can create named classes (to get style control from your CSS) with:
 
 #+begin_example
-,#+begin_note
-,*Note example* \\
-Did you know...
-,#+end_note
+,#+begin_myclass
+This text is wrapped in a myclass DIV...
+,#+end_myclass
 #+end_example
 
 You can also add interactive elements to the HTML such as interactive R plots.
@@ -1456,6 +1455,15 @@ The resulting chart:
 
 #+results: R-plot
 [[file:images/Rplot.png]]
+
+** COMMENT ggplot2
+
+#+begin_src R :results output graphics :file foo.png :session *foo*
+  library(ggplot2)
+  ggplot(data.frame(x = rnorm(10), y = rnorm(10)),
+         aes(x = x, y = y)) +
+    geom_point()
+#+end_src
 
 * Citations
 
