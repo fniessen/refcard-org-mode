@@ -9,8 +9,8 @@
 #+HTML_LINK_HOME: http://www.google.com
 #+HTML_LINK_UP: http://www.bing.com
 
-# #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg-local-abs.setup
-#+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg-local-abs.setup
+# #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
 #+PROPERTY:  eval yes
 #+PROPERTY:  exports both
@@ -1073,6 +1073,15 @@ int main(int arc, char **argv)
 }
 #+end_src
 
+#+begin_src emacs-lisp :eval no
+(defvar hello "Hello")
+
+(defun hello (name &optional greeting)
+  (message "%s %s" (or greeting "Hello") name))
+#+end_src
+
+# See http://sphinxcontrib-emacs.readthedocs.org/en/latest/guide/domain.html
+
 ** Source mode
 
 The following language strings are currently recognized:
@@ -1118,7 +1127,7 @@ print("This block is in scriptsize")
 ** Line numbers
 
 Both in ~example~ and in ~src~ snippets, you can add a ~-n~ switch to the end of the
-~begin~ line, to get the lines of the example numbered.
+~begin~ line to get the lines numbered:
 
 #+header: :eval no
 #+begin_src emacs-lisp -n
