@@ -1081,6 +1081,8 @@ int main(int arc, char **argv)
 
 (defun hello (name &optional greeting)
   (message "%s %s" (or greeting "Hello") name))
+
+(setq tab-width 4)
 #+end_src
 
 # See http://sphinxcontrib-emacs.readthedocs.org/en/latest/guide/domain.html
