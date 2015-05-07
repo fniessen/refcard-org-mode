@@ -1176,7 +1176,7 @@ You can embed LaTeX math formatting in Org mode files.
 
 ** Inline math expressions
 
-For *inline math* expressions, use ~\(...\)~:
+For *inline math* expressions, use the parentheses notation ~\(...\)~:
 
 #+begin_src org
 The formula \(a^2 + b^2 = c^2\) has been discovered by Pythagoras.
@@ -1186,7 +1186,9 @@ Let \(a=\sin(x) + \cos(x)\). Then \(a^2 = 2\sin(x)\cos(x)\) because \(\sin^2x +
 #+end_src
 
 #+begin_warning
-It's /not/ advised to use the constructs ~$...$~ (both for Org and for MathJax).
+It's /not/ advised to use the ~$...$~ construct (both for Org and for MathJax).
+
+Don't forget that ~$~ is also a valid currency symbol!
 #+end_warning
 
 ** Math expressions in display mode
@@ -1523,6 +1525,53 @@ Glossaries are optional.  Glossaries entries are an example of [[id:f1a4a242-755
 
 - A second glossary term ::
      The corresponding (indented) definition.
+
+* Contributing
+
+** Issues
+
+Report issues and suggest features and improvements on the [[https://github.com/fniessen/refcard-org-mode/issues/new][GitHub issue tracker]].
+
+** Patches
+
+I love contributions!  Patches under any form are always welcome!
+
+** Donations
+
+If you like the refcard-org-mode project, you can show your appreciation and
+help support future development by making a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dmode&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]] through PayPal.
+
+Regardless of the donations, refcard-org-mode will always be free both as in
+beer and as in speech.
+
+* License
+
+Copyright (C) 2014-2015 Fabrice Niessen.
+
+Author: Fabrice Niessen \\
+Keywords: org-mode refcard
+
+This program is free software; you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see http://www.gnu.org/licenses/.
+
+#+begin_html
+<a href="http://opensource.org/licenses/GPL-3.0">
+  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
+</a>
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dmode&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
+</a>
+#+end_html
 
 * Footnotes
 
