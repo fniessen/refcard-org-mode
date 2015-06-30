@@ -1,6 +1,6 @@
 #+TITLE:     Org mode syntax quick reference card
 #+AUTHOR:    Fabrice Niessen
-#+EMAIL:     fniessen@pirilampo.org
+#+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
 #+DESCRIPTION: Org mode syntax example
 #+KEYWORDS:  org-mode, syntax, quick reference, cheat sheet, recommended practices, latex, beamer, html
 #+LANGUAGE:  en
@@ -12,9 +12,7 @@
 # #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg-local-abs.setup
 #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
 
-#+PROPERTY:  eval yes
-#+PROPERTY:  exports both
-#+PROPERTY:  results replace
+#+PROPERTY:  header-args :eval yes :exports both :results replace
 
 # #+MACRO: longtext this is a very very long text to include
 
@@ -535,9 +533,6 @@ See http://www.pirilampo.org (automatic!) and the
 [[http://orgmode.org/][Org mode Web site]].
 #+end_src
 
-# Clicking on the image [[http://orgmode.org/][file:images/org-mode-unicorn.png]] leads to the Org mode
-# home page.
-
 *** Relative links
 
 #+begin_src org
@@ -548,6 +543,15 @@ See http://www.pirilampo.org (automatic!) and the
 
 #+begin_src org
 [[mailto:john.doe@example.com][email John Doe]]
+#+end_src
+
+*** Image links
+
+To get image links, put a link to a file in the description.
+
+#+begin_src org
+Clicking on the image [[http://orgmode.org/][file:images/org-mode-unicorn.png]]
+leads to the Org mode home page.
 #+end_src
 
 ** Internal links
@@ -1087,6 +1091,11 @@ The Greek letters \alpha, \beta, and \gamma are used to denote angles.
 # Smilies: \smiley \sad
 - Suits: \clubs \spades
 #+end_src
+
+#+begin_note
+You can insert a real "zero-width space" Unicode character by pressing
+~C-x 8 RET zero width space RET~ or ~C-x 8 RET 200b RET~.
+#+end_note
 
 * Source code
 
