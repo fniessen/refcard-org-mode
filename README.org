@@ -1,4 +1,5 @@
-#+TITLE:     Org mode syntax quick reference card
+#+TITLE:     Org mode syntax
+#+SUBTITLE:  Quick reference card
 #+AUTHOR:    Fabrice Niessen
 #+EMAIL:     (concat "fniessen" at-sign "pirilampo.org")
 #+DESCRIPTION: Org mode syntax example
@@ -114,7 +115,8 @@ The ~ALT_TITLE~ property allows to set an alternate title (shorter, for example)
 for a given headline in the table of contents and other running heads.
 #+end_note
 
-To insert the TOC at some random place, use:
+To locally insert the TOC at some random place, use the ~#+TOC: headlines [n]~
+feature; for example:
 
 #+begin_src org :eval never-export
 ,#+TOC: headlines 2
@@ -729,6 +731,7 @@ This is a useful note.
 #+end_src
 
 # #+attr_html: :options [By the way...]
+# #+attr_latex: :options Test
 # #+begin_note
 # This is a useful note (with a title).
 # #+end_note
@@ -838,6 +841,17 @@ or:
 #+begin_admonitiontodo
 Admonitiontodo
 #+end_admonitiontodo
+
+Alternatively to the inline tasks (for creating "TODO" annotations), if you want
+such notes not to show up in the published version, drawers may also do the job,
+e.g.:
+
+  :FIXME:
+  ...
+  :END:
+
+You can then control what drawers are exported with
+~org-export-with-drawers~ (or per document with d OPTIONS item).
 
 * Centered text
 
@@ -1010,6 +1024,12 @@ It's possible to add comments in the document.
 # This Org comment here won't be displayed.
 #+end_src
 
+#+begin_note
+Org doesn't support *comments inside paragraphs* since a comment ends
+a paragraph.  However, you can mimic inline comments with export snippets, e.g.,
+~@@comment:...@@~.
+#+end_note
+
 * Substitutions
 
 ** General replacements
@@ -1132,6 +1152,10 @@ int main(int arc, char **argv)
 #+end_src
 
 # See http://sphinxcontrib-emacs.readthedocs.org/en/latest/guide/domain.html
+
+#+begin_note
+You need =htmlize.el= in your ~load-path~, for the HTML export.
+#+end_note
 
 ** Source mode
 
@@ -1409,7 +1433,7 @@ That can be changed by adding such a line (into your Org document):
 *** TODO [#B] Apply GTD methodoloy
     DEADLINE: <2014-12-01 Mon>
     :PROPERTIES:
-    :HTML_CONTAINER_CLASS:    hsCollapsed
+    :HTML_CONTAINER_CLASS: hsCollapsed
     :END:
 
 This section will be collapsed when loading the page because the entry has the
