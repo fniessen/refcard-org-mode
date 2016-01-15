@@ -2891,6 +2891,27 @@ a paragraph.  However, you can mimic inline comments with export snippets, e.g.,
 </p>
 
 </div>
+
+<div class="tip">
+<p>
+If you have tables (for example) that you want to ignore during export, one possibility
+is to use <b>comment blocks</b> or <code>:noexport:</code> subtrees.  Another possibility is to
+<b>use</b> non-exported <b>drawers</b> (see #+OPTIONS: d:).
+</p>
+
+</div>
+
+<p>
+If you want to ignore that part only during export, but still want to
+use keep it active in the buffer, I suggest to use a drawer, with an
+appropriate `org-export-with-drawers&rsquo; value, e.g.,
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-org"><span class="org-org-meta-line">#+OPTIONS: d:(not "NOEXPORT")</span>
+</pre>
+</div>
 </div>
 </div>
 
@@ -3552,6 +3573,10 @@ Timestamps: <span class="timestamp-wrapper"><span class="timestamp">[2014-01-16 
 <div id="outline-container-orgheadline134" class="outline-4">
 <h4 id="orgheadline134"><span class="done DONE">DONE</span> <span class="priority">[A]</span> Buy GTD book&#xa0;&#xa0;&#xa0;<span class="tag"><span class="online">online</span></span></h4>
 <div class="outline-text-4" id="text-orgheadline134">
+<ul class="org-ul">
+<li>State &ldquo;TODO&rdquo;        -&gt;  &ldquo;DONE&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2014-01-16 Thu 09:52]</span></span></li>
+</ul>
+
 <p>
 By default, <code>DONE</code> actions will be collapsed.
 </p>
@@ -3957,7 +3982,7 @@ beer and as in speech.
 <h2 id="orgheadline98">License</h2>
 <div class="outline-text-2" id="text-orgheadline98">
 <p>
-Copyright (C) 2014-2015 Fabrice Niessen.
+Copyright (C) 2014-2016 Fabrice Niessen.
 </p>
 
 <p>

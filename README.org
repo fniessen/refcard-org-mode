@@ -524,7 +524,7 @@ You can fill a table from a CSV file using R commands.
   :END:
 #+end_src
 
-This document is available in [[file:org-mode-syntax.org][plain text]], [[file:org-mode-syntax.html][HTML]] and [[file:org-mode-syntax.pdf][PDF]].
+This document is available in [[file:README.org][plain text]], [[file:README.html][HTML]] and [[file:README.pdf][PDF]].
 
 The links are delimited by double square brackets.
 
@@ -1029,6 +1029,20 @@ Org doesn't support *comments inside paragraphs* since a comment ends
 a paragraph.  However, you can mimic inline comments with export snippets, e.g.,
 ~@@comment:...@@~.
 #+end_note
+
+#+begin_tip
+If you have tables (for example) that you want to ignore during export, one possibility
+is to use *comment blocks* or ~:noexport:~ subtrees.  Another possibility is to
+*use* non-exported *drawers* (see #+OPTIONS: d:).
+#+end_tip
+
+If you want to ignore that part only during export, but still want to
+use keep it active in the buffer, I suggest to use a drawer, with an
+appropriate `org-export-with-drawers' value, e.g.,
+
+#+begin_src org
+,#+OPTIONS: d:(not "NOEXPORT")
+#+end_src
 
 * Substitutions
 
@@ -1616,7 +1630,7 @@ beer and as in speech.
 
 * License
 
-Copyright (C) 2014-2015 Fabrice Niessen.
+Copyright (C) 2014-2016 Fabrice Niessen.
 
 Author: Fabrice Niessen \\
 Keywords: org-mode refcard
@@ -1633,7 +1647,7 @@ A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see http://www.gnu.org/licenses/.
 
-#+begin_html
+#+begin_export html
 <a href="http://opensource.org/licenses/GPL-3.0">
   <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
 </a>
@@ -1641,7 +1655,7 @@ this program. If not, see http://www.gnu.org/licenses/.
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dmode&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
   <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
 </a>
-#+end_html
+#+end_export
 
 * Footnotes
 
