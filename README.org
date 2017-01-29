@@ -10,14 +10,13 @@
 #+HTML_LINK_HOME: http://www.google.com
 #+HTML_LINK_UP: http://www.bing.com
 
-# #+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg-local-abs.setup
-#+SETUPFILE: ~/src/org-html-themes/setup/theme-readtheorg.setup
+#+SETUPFILE: ~/.dotfiles/org/theme-readtheorg.setup
 
 #+PROPERTY:  header-args :eval yes :exports both :results replace
 
 # #+MACRO: longtext this is a very very long text to include
 
-| *Framework*   | Org mode 8                                          |
+| *Framework*   | Org mode 9                                          |
 | *Bug tracker* | https://github.com/fniessen/refcard-org-mode/issues |
 | *Source*      | https://github.com/fniessen/refcard-org-mode        |
 # | *Documentation* | http://refcard-org-mode.readthedocs.org/            |
@@ -1349,7 +1348,7 @@ You can include another Org file and skip its title by using the ~:lines~ argume
 to ~#+INCLUDE~:
 
 #+begin_src org
-,#+INCLUDE: chapter1.org :lines "2-"
+,#+INCLUDE: "chapter1.org" :lines "2-"
 #+end_src
 
 #+begin_note
@@ -1388,7 +1387,7 @@ You can also add interactive elements to the HTML such as interactive R plots.
 Finally, you can include an HTML file verbatim (during export) with:
 
 #+begin_src org
-,#+INCLUDE: file.html html
+,#+INCLUDE: "file.html" export html
 #+end_src
 
 Don't edit the exported HTML file!
@@ -1622,15 +1621,16 @@ I love contributions!  Patches under any form are always welcome!
 
 ** Donations
 
-If you like the refcard-org-mode project, you can show your appreciation and
-help support future development by making a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dmode&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]] through PayPal.
+If you use the refcard-org-mode project and feel it is making your life better
+and easier, you can show your appreciation and help support future development
+by making a [[https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dmode&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted][donation]] through PayPal.  Thank you!
 
 Regardless of the donations, refcard-org-mode will always be free both as in
 beer and as in speech.
 
 * License
 
-Copyright (C) 2014-2016 Fabrice Niessen.
+Copyright (C) 2014-2017 Fabrice Niessen.
 
 Author: Fabrice Niessen \\
 Keywords: org-mode refcard
@@ -1647,15 +1647,12 @@ A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 You should have received a copy of the GNU General Public License along with
 this program. If not, see http://www.gnu.org/licenses/.
 
-#+begin_export html
-<a href="http://opensource.org/licenses/GPL-3.0">
-  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
-</a>
-
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dmode&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
-  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
-</a>
-#+end_export
+#+html: <a href="http://opensource.org/licenses/GPL-3.0">
+#+html:   <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
+#+html: </a>
+#+html: <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dmode&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
+#+html:   <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
+#+html: </a>
 
 * Footnotes
 

@@ -3,32 +3,25 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Org mode syntax</title>
-<meta name="generator" content="Org-mode" />
-<meta name="author" content="Fabrice Niessen" />
-<meta name="description" content="Org mode syntax example"
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Fabrice Niessen" />
+<meta  name="description" content="Org mode syntax example"
  />
-<meta name="keywords" content="org-mode, syntax, quick reference, cheat sheet, recommended practices, latex, beamer, html" />
+<meta  name="keywords" content="org-mode, syntax, quick reference, cheat sheet, recommended practices, latex, beamer, html" />
 <style type="text/css">
  <!--/*--><![CDATA[/*><!--*/
-  .title  { text-align: center;
-             margin-bottom: .2em; }
-  .subtitle { text-align: center;
-              font-size: medium;
-              font-weight: bold;
-              margin-top:0; }
+  .title  { text-align: center; }
   .todo   { font-family: monospace; color: red; }
-  .done   { font-family: monospace; color: green; }
-  .priority { font-family: monospace; color: orange; }
+  .done   { color: green; }
   .tag    { background-color: #eee; font-family: monospace;
             padding: 2px; font-size: 80%; font-weight: normal; }
   .timestamp { color: #bebebe; }
   .timestamp-kwd { color: #5f9ea0; }
-  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
-  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
-  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
   .underline { text-decoration: underline; }
   #postamble p, #preamble p { font-size: 90%; margin: .2em; }
   p.verse { margin-left: 3%; }
@@ -67,14 +60,15 @@
   caption.t-above { caption-side: top; }
   caption.t-bottom { caption-side: bottom; }
   td, th { vertical-align:top;  }
-  th.org-right  { text-align: center;  }
-  th.org-left   { text-align: center;   }
-  th.org-center { text-align: center; }
-  td.org-right  { text-align: right;  }
-  td.org-left   { text-align: left;   }
-  td.org-center { text-align: center; }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
   dt { font-weight: bold; }
-  .footpara { display: inline; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
   .footdef  { margin-bottom: 1em; }
   .figure { padding: 1em; }
   .figure p { text-align: center; }
@@ -96,34 +90,48 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   /*]]>*/-->
 </style>
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/htmlize.css"/>
-<link rel="stylesheet" type="text/css" href="http://www.pirilampo.org/styles/readtheorg/css/readtheorg.css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/lib/js/jquery.stickytableheaders.js"></script>
-<script type="text/javascript" src="http://www.pirilampo.org/styles/readtheorg/js/readtheorg.js"></script>
-<script type="text/x-mathjax-config">
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
     MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
         displayAlign: "center",
-        displayIndent: "0em",
+        displayIndent: "2em",
 
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
              }
-});
+        }
+    });
+/*]]>*///-->
 </script>
-<script type="text/javascript"
-        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 </head>
 <body>
 <div id="org-div-home-and-up">
@@ -131,170 +139,167 @@
  |
  <a accesskey="H" href="http://www.google.com"> HOME </a>
 </div><div id="content">
-<h1 class="title">Org mode syntax
-<br>
-<span class="subtitle">Quick reference card</span>
-</h1>
+<h1 class="title">Org mode syntax</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Summary</a></li>
-<li><a href="#orgheadline2">Reference card</a></li>
-<li><a href="#orgheadline3">Document header</a></li>
-<li><a href="#orgheadline4">Document settings</a>
+<li><a href="#sec-1">Summary</a></li>
+<li><a href="#sec-2">Reference card</a></li>
+<li><a href="#sec-3">Document header</a></li>
+<li><a href="#sec-4">Document settings</a>
 <ul>
-<li><a href="#orgheadline5">Document description</a></li>
-<li><a href="#orgheadline6">Section numbering</a></li>
-<li><a href="#orgheadline7">Table of contents</a></li>
-<li><a href="#orgheadline8">List of figures</a></li>
-<li><a href="#orgheadline9">List of tables</a></li>
-<li><a href="#orgheadline10">List of equations</a></li>
+<li><a href="#sec-4-1">Document description</a></li>
+<li><a href="#sec-4-2">Section numbering</a></li>
+<li><a href="#sec-4-3">Table of contents</a></li>
+<li><a href="#sec-4-4">List of figures</a></li>
+<li><a href="#sec-4-5">List of tables</a></li>
+<li><a href="#sec-4-6">List of equations</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">Section titles (headings)</a>
+<li><a href="#sec-5">Section titles (headings)</a>
 <ul>
-<li><a href="#orgheadline12">Bigger heading (level 2)</a></li>
-<li><a href="#orgheadline13">Numbered headings</a></li>
+<li><a href="#sec-5-1">Bigger heading (level 2)</a></li>
+<li><a href="#sec-5-2">Numbered headings</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">Paragraphs</a>
+<li><a href="#sec-6">Paragraphs</a>
 <ul>
-<li><a href="#orgheadline15">Normal</a></li>
-<li><a href="#orgheadline16">Line breaks</a></li>
-<li><a href="#orgheadline17">Horizontal rules</a></li>
-<li><a href="#orgheadline18">Text width</a></li>
+<li><a href="#sec-6-1">Normal</a></li>
+<li><a href="#sec-6-2">Line breaks</a></li>
+<li><a href="#sec-6-3">Horizontal rules</a></li>
+<li><a href="#sec-6-4">Text width</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">Formatting text</a>
+<li><a href="#sec-7">Formatting text</a>
 <ul>
-<li><a href="#orgheadline20">Bold and italic</a></li>
-<li><a href="#orgheadline21">Monospace, superscript and subscript</a></li>
-<li><a href="#orgheadline22">Smart punctuation</a></li>
+<li><a href="#sec-7-1">Bold and italic</a></li>
+<li><a href="#sec-7-2">Monospace, superscript and subscript</a></li>
+<li><a href="#sec-7-3">Smart punctuation</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline23">Lists</a>
+<li><a href="#sec-8">Lists</a>
 <ul>
-<li><a href="#orgheadline24">Unordered lists</a></li>
-<li><a href="#orgheadline25">Checklists</a></li>
-<li><a href="#orgheadline26">Ordered lists</a></li>
-<li><a href="#orgheadline27">Definition lists</a></li>
-<li><a href="#orgheadline28">Separating lists</a></li>
+<li><a href="#sec-8-1">Unordered lists</a></li>
+<li><a href="#sec-8-2">Checklists</a></li>
+<li><a href="#sec-8-3">Ordered lists</a></li>
+<li><a href="#sec-8-4">Definition lists</a></li>
+<li><a href="#sec-8-5">Separating lists</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline29">Tables</a>
+<li><a href="#sec-9">Tables</a>
 <ul>
-<li><a href="#orgheadline30">Simple table</a></li>
-<li><a href="#orgheadline31">Column formatting</a></li>
-<li><a href="#orgheadline32">Header row</a></li>
-<li><a href="#orgheadline33">A very long table</a></li>
-<li><a href="#orgheadline34">Table placement</a></li>
-<li><a href="#orgheadline35">Align tables on the page</a></li>
-<li><a href="#orgheadline36">Table size</a></li>
-<li><a href="#orgheadline37">CSV</a></li>
+<li><a href="#sec-9-1">Simple table</a></li>
+<li><a href="#sec-9-2">Column formatting</a></li>
+<li><a href="#sec-9-3">Header row</a></li>
+<li><a href="#sec-9-4">A very long table</a></li>
+<li><a href="#sec-9-5">Table placement</a></li>
+<li><a href="#sec-9-6">Align tables on the page</a></li>
+<li><a href="#sec-9-7">Table size</a></li>
+<li><a href="#sec-9-8">CSV</a></li>
 </ul>
 </li>
 <li><a href="#links">Links</a>
 <ul>
-<li><a href="#orgheadline38">External links</a></li>
-<li><a href="#orgheadline39">Internal links</a></li>
-<li><a href="#orgheadline40">Extensions that define new hyperlinks targets</a></li>
+<li><a href="#sec-10-1">External links</a></li>
+<li><a href="#sec-10-2">Internal links</a></li>
+<li><a href="#sec-10-3">Extensions that define new hyperlinks targets</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline41">Images</a>
+<li><a href="#sec-11">Images</a>
 <ul>
-<li><a href="#orgheadline42">Inline picture</a></li>
-<li><a href="#orgheadline43">Image alignment (using positioning)</a></li>
-<li><a href="#orgheadline44">Image attributes and values</a></li>
-<li><a href="#orgheadline45">Figures</a></li>
+<li><a href="#sec-11-1">Inline picture</a></li>
+<li><a href="#sec-11-2">Image alignment (using positioning)</a></li>
+<li><a href="#sec-11-3">Image attributes and values</a></li>
+<li><a href="#sec-11-4">Figures</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline46">Videos</a></li>
-<li><a href="#orgheadline47">Admonitions</a>
+<li><a href="#sec-12">Videos</a></li>
+<li><a href="#sec-13">Admonitions</a>
 <ul>
-<li><a href="#orgheadline48">Base admonitions</a></li>
-<li><a href="#orgheadline49">Additional admonitions</a></li>
-<li><a href="#orgheadline50">Todo admonition</a></li>
+<li><a href="#sec-13-1">Base admonitions</a></li>
+<li><a href="#sec-13-2">Additional admonitions</a></li>
+<li><a href="#sec-13-3">Todo admonition</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline51">Centered text</a></li>
-<li><a href="#orgheadline52">Sidebar</a></li>
-<li><a href="#orgheadline53">Example</a></li>
-<li><a href="#orgheadline54">Prose excerpts</a>
+<li><a href="#sec-14">Centered text</a></li>
+<li><a href="#sec-15">Sidebar</a></li>
+<li><a href="#sec-16">Example</a></li>
+<li><a href="#sec-17">Prose excerpts</a>
 <ul>
-<li><a href="#orgheadline55">Quote</a></li>
-<li><a href="#orgheadline56">Verse</a></li>
-<li><a href="#orgheadline57">Block quote with optional attribution line</a></li>
-<li><a href="#orgheadline58">Block quotes with their own class attribute</a></li>
-<li><a href="#orgheadline59">Non-breaking space</a></li>
+<li><a href="#sec-17-1">Quote</a></li>
+<li><a href="#sec-17-2">Verse</a></li>
+<li><a href="#sec-17-3">Block quote with optional attribution line</a></li>
+<li><a href="#sec-17-4">Block quotes with their own class attribute</a></li>
+<li><a href="#sec-17-5">Non-breaking space</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline60">Comments</a></li>
-<li><a href="#orgheadline61">Substitutions</a>
+<li><a href="#sec-18">Comments</a></li>
+<li><a href="#sec-19">Substitutions</a>
 <ul>
-<li><a href="#orgheadline62">General replacements</a></li>
-<li><a href="#orgheadline63">Styled references</a></li>
-<li><a href="#orgheadline64">Special characters</a></li>
+<li><a href="#sec-19-1">General replacements</a></li>
+<li><a href="#sec-19-2">Styled references</a></li>
+<li><a href="#sec-19-3">Special characters</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline65">Source code</a>
+<li><a href="#sec-20">Source code</a>
 <ul>
-<li><a href="#orgheadline66">Inline code</a></li>
-<li><a href="#orgheadline67">Code blocks (with syntax highlighting)</a></li>
-<li><a href="#orgheadline68">Source mode</a></li>
-<li><a href="#orgheadline69">Line break</a></li>
-<li><a href="#orgheadline70">Line numbers</a></li>
-<li><a href="#orgheadline71">Callouts</a></li>
+<li><a href="#sec-20-1">Inline code</a></li>
+<li><a href="#sec-20-2">Code blocks (with syntax highlighting)</a></li>
+<li><a href="#sec-20-3">Source mode</a></li>
+<li><a href="#sec-20-4">Line break</a></li>
+<li><a href="#sec-20-5">Line numbers</a></li>
+<li><a href="#sec-20-6">Callouts</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline72">Math</a>
+<li><a href="#sec-21">Math</a>
 <ul>
-<li><a href="#orgheadline73">Inline math expressions</a></li>
-<li><a href="#orgheadline74">Math expressions in display mode</a></li>
-<li><a href="#orgheadline75">Equation numbers</a></li>
+<li><a href="#sec-21-1">Inline math expressions</a></li>
+<li><a href="#sec-21-2">Math expressions in display mode</a></li>
+<li><a href="#sec-21-3">Equation numbers</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline76">Miscellaneous effects</a>
+<li><a href="#sec-22">Miscellaneous effects</a>
 <ul>
-<li><a href="#orgheadline77">Include Org files</a></li>
-<li><a href="#orgheadline78">Raw HTML</a></li>
-<li><a href="#orgheadline79">Raw LaTeX</a></li>
+<li><a href="#sec-22-1">Include Org files</a></li>
+<li><a href="#sec-22-2">Raw HTML</a></li>
+<li><a href="#sec-22-3">Raw LaTeX</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline80">Footnotes </a></li>
-<li><a href="#orgheadline81">Useful extensions</a>
+<li><a href="#sec-23">Footnotes </a></li>
+<li><a href="#sec-24">Useful extensions</a>
 <ul>
-<li><a href="#orgheadline82">Todo extension</a></li>
-<li><a href="#orgheadline83">Bigblow extension</a></li>
+<li><a href="#sec-24-1">Todo extension</a></li>
+<li><a href="#sec-24-2">Bigblow extension</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline84">Graphs with Graphviz</a>
+<li><a href="#sec-25">Graphs with Graphviz</a>
 <ul>
-<li><a href="#orgheadline85">Undirected</a></li>
-<li><a href="#orgheadline86">Directed</a></li>
+<li><a href="#sec-25-1">Undirected</a></li>
+<li><a href="#sec-25-2">Directed</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline87">Graphs with R</a>
+<li><a href="#sec-26">Graphs with R</a>
 <ul>
-<li><a href="#orgheadline88">Example</a></li>
+<li><a href="#sec-26-1">Example</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline89">Citations</a></li>
-<li><a href="#orgheadline90">Appendix</a>
+<li><a href="#sec-27">Citations</a></li>
+<li><a href="#sec-28">Appendix</a>
 <ul>
-<li><a href="#orgheadline91">Index</a></li>
-<li><a href="#orgheadline92">Bibliography</a></li>
-<li><a href="#orgheadline93">Glossary</a></li>
+<li><a href="#sec-28-1">Index</a></li>
+<li><a href="#sec-28-2">Bibliography</a></li>
+<li><a href="#sec-28-3">Glossary</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline94">Contributing</a>
+<li><a href="#sec-29">Contributing</a>
 <ul>
-<li><a href="#orgheadline95">Issues</a></li>
-<li><a href="#orgheadline96">Patches</a></li>
-<li><a href="#orgheadline97">Donations</a></li>
+<li><a href="#sec-29-1">Issues</a></li>
+<li><a href="#sec-29-2">Patches</a></li>
+<li><a href="#sec-29-3">Donations</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline98">License</a></li>
+<li><a href="#sec-30">License</a></li>
 </ul>
 </div>
 </div>
@@ -302,41 +307,45 @@
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left"><b>Framework</b></td>
-<td class="org-left">Org mode 8</td>
+<td class="left"><b>Framework</b></td>
+<td class="left">Org mode 8</td>
 </tr>
 
 <tr>
-<td class="org-left"><b>Bug tracker</b></td>
-<td class="org-left"><a href="https://github.com/fniessen/refcard-org-mode/issues">https://github.com/fniessen/refcard-org-mode/issues</a></td>
+<td class="left"><b>Bug tracker</b></td>
+<td class="left"><a href="https://github.com/fniessen/refcard-org-mode/issues">https://github.com/fniessen/refcard-org-mode/issues</a></td>
 </tr>
 
 <tr>
-<td class="org-left"><b>Source</b></td>
-<td class="org-left"><a href="https://github.com/fniessen/refcard-org-mode">https://github.com/fniessen/refcard-org-mode</a></td>
+<td class="left"><b>Source</b></td>
+<td class="left"><a href="https://github.com/fniessen/refcard-org-mode">https://github.com/fniessen/refcard-org-mode</a></td>
 </tr>
 </tbody>
 </table>
 
-<div id="outline-container-orgheadline1" class="outline-2">
-<h2 id="orgheadline1">Summary</h2>
-<div class="outline-text-2" id="text-orgheadline1">
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Summary</h2>
+<div class="outline-text-2" id="text-1">
 <div class="sidebar">
 <p>
 <b>You will learn to:</b>
 </p>
 
 <ul class="org-ul">
-<li>write your docs in Org mode</li>
-<li>create tables</li>
-<li>create custom code blocks</li>
-<li>and much more!</li>
+<li>write your docs in Org mode
+</li>
+<li>create tables
+</li>
+<li>create custom code blocks
+</li>
+<li>and much more!
+</li>
 </ul>
 
 </div>
@@ -365,178 +374,178 @@ impatient, following are some quick steps to get started.
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">Reference card</h2>
-<div class="outline-text-2" id="text-orgheadline2">
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Reference card</h2>
+<div class="outline-text-2" id="text-2">
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgheadline1">Summary</a></li>
-<li><a href="#orgheadline2">Reference card</a></li>
-<li><a href="#orgheadline3">Document header</a></li>
-<li><a href="#orgheadline4">Document settings</a>
+<li><a href="#sec-1">Summary</a></li>
+<li><a href="#sec-2">Reference card</a></li>
+<li><a href="#sec-3">Document header</a></li>
+<li><a href="#sec-4">Document settings</a>
 <ul>
-<li><a href="#orgheadline5">Document description</a></li>
-<li><a href="#orgheadline6">Section numbering</a></li>
-<li><a href="#orgheadline7">Table of contents</a></li>
-<li><a href="#orgheadline8">List of figures</a></li>
-<li><a href="#orgheadline9">List of tables</a></li>
-<li><a href="#orgheadline10">List of equations</a></li>
+<li><a href="#sec-4-1">Document description</a></li>
+<li><a href="#sec-4-2">Section numbering</a></li>
+<li><a href="#sec-4-3">Table of contents</a></li>
+<li><a href="#sec-4-4">List of figures</a></li>
+<li><a href="#sec-4-5">List of tables</a></li>
+<li><a href="#sec-4-6">List of equations</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline11">Section titles (headings)</a>
+<li><a href="#sec-5">Section titles (headings)</a>
 <ul>
-<li><a href="#orgheadline12">Bigger heading (level 2)</a></li>
-<li><a href="#orgheadline13">Numbered headings</a></li>
+<li><a href="#sec-5-1">Bigger heading (level 2)</a></li>
+<li><a href="#sec-5-2">Numbered headings</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline14">Paragraphs</a>
+<li><a href="#sec-6">Paragraphs</a>
 <ul>
-<li><a href="#orgheadline15">Normal</a></li>
-<li><a href="#orgheadline16">Line breaks</a></li>
-<li><a href="#orgheadline17">Horizontal rules</a></li>
-<li><a href="#orgheadline18">Text width</a></li>
+<li><a href="#sec-6-1">Normal</a></li>
+<li><a href="#sec-6-2">Line breaks</a></li>
+<li><a href="#sec-6-3">Horizontal rules</a></li>
+<li><a href="#sec-6-4">Text width</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline19">Formatting text</a>
+<li><a href="#sec-7">Formatting text</a>
 <ul>
-<li><a href="#orgheadline20">Bold and italic</a></li>
-<li><a href="#orgheadline21">Monospace, superscript and subscript</a></li>
-<li><a href="#orgheadline22">Smart punctuation</a></li>
+<li><a href="#sec-7-1">Bold and italic</a></li>
+<li><a href="#sec-7-2">Monospace, superscript and subscript</a></li>
+<li><a href="#sec-7-3">Smart punctuation</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline23">Lists</a>
+<li><a href="#sec-8">Lists</a>
 <ul>
-<li><a href="#orgheadline24">Unordered lists</a></li>
-<li><a href="#orgheadline25">Checklists</a></li>
-<li><a href="#orgheadline26">Ordered lists</a></li>
-<li><a href="#orgheadline27">Definition lists</a></li>
-<li><a href="#orgheadline28">Separating lists</a></li>
+<li><a href="#sec-8-1">Unordered lists</a></li>
+<li><a href="#sec-8-2">Checklists</a></li>
+<li><a href="#sec-8-3">Ordered lists</a></li>
+<li><a href="#sec-8-4">Definition lists</a></li>
+<li><a href="#sec-8-5">Separating lists</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline29">Tables</a>
+<li><a href="#sec-9">Tables</a>
 <ul>
-<li><a href="#orgheadline30">Simple table</a></li>
-<li><a href="#orgheadline31">Column formatting</a></li>
-<li><a href="#orgheadline32">Header row</a></li>
-<li><a href="#orgheadline33">A very long table</a></li>
-<li><a href="#orgheadline34">Table placement</a></li>
-<li><a href="#orgheadline35">Align tables on the page</a></li>
-<li><a href="#orgheadline36">Table size</a></li>
-<li><a href="#orgheadline37">CSV</a></li>
+<li><a href="#sec-9-1">Simple table</a></li>
+<li><a href="#sec-9-2">Column formatting</a></li>
+<li><a href="#sec-9-3">Header row</a></li>
+<li><a href="#sec-9-4">A very long table</a></li>
+<li><a href="#sec-9-5">Table placement</a></li>
+<li><a href="#sec-9-6">Align tables on the page</a></li>
+<li><a href="#sec-9-7">Table size</a></li>
+<li><a href="#sec-9-8">CSV</a></li>
 </ul>
 </li>
 <li><a href="#links">Links</a>
 <ul>
-<li><a href="#orgheadline38">External links</a></li>
-<li><a href="#orgheadline39">Internal links</a></li>
-<li><a href="#orgheadline40">Extensions that define new hyperlinks targets</a></li>
+<li><a href="#sec-10-1">External links</a></li>
+<li><a href="#sec-10-2">Internal links</a></li>
+<li><a href="#sec-10-3">Extensions that define new hyperlinks targets</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline41">Images</a>
+<li><a href="#sec-11">Images</a>
 <ul>
-<li><a href="#orgheadline42">Inline picture</a></li>
-<li><a href="#orgheadline43">Image alignment (using positioning)</a></li>
-<li><a href="#orgheadline44">Image attributes and values</a></li>
-<li><a href="#orgheadline45">Figures</a></li>
+<li><a href="#sec-11-1">Inline picture</a></li>
+<li><a href="#sec-11-2">Image alignment (using positioning)</a></li>
+<li><a href="#sec-11-3">Image attributes and values</a></li>
+<li><a href="#sec-11-4">Figures</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline46">Videos</a></li>
-<li><a href="#orgheadline47">Admonitions</a>
+<li><a href="#sec-12">Videos</a></li>
+<li><a href="#sec-13">Admonitions</a>
 <ul>
-<li><a href="#orgheadline48">Base admonitions</a></li>
-<li><a href="#orgheadline49">Additional admonitions</a></li>
-<li><a href="#orgheadline50">Todo admonition</a></li>
+<li><a href="#sec-13-1">Base admonitions</a></li>
+<li><a href="#sec-13-2">Additional admonitions</a></li>
+<li><a href="#sec-13-3">Todo admonition</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline51">Centered text</a></li>
-<li><a href="#orgheadline52">Sidebar</a></li>
-<li><a href="#orgheadline53">Example</a></li>
-<li><a href="#orgheadline54">Prose excerpts</a>
+<li><a href="#sec-14">Centered text</a></li>
+<li><a href="#sec-15">Sidebar</a></li>
+<li><a href="#sec-16">Example</a></li>
+<li><a href="#sec-17">Prose excerpts</a>
 <ul>
-<li><a href="#orgheadline55">Quote</a></li>
-<li><a href="#orgheadline56">Verse</a></li>
-<li><a href="#orgheadline57">Block quote with optional attribution line</a></li>
-<li><a href="#orgheadline58">Block quotes with their own class attribute</a></li>
-<li><a href="#orgheadline59">Non-breaking space</a></li>
+<li><a href="#sec-17-1">Quote</a></li>
+<li><a href="#sec-17-2">Verse</a></li>
+<li><a href="#sec-17-3">Block quote with optional attribution line</a></li>
+<li><a href="#sec-17-4">Block quotes with their own class attribute</a></li>
+<li><a href="#sec-17-5">Non-breaking space</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline60">Comments</a></li>
-<li><a href="#orgheadline61">Substitutions</a>
+<li><a href="#sec-18">Comments</a></li>
+<li><a href="#sec-19">Substitutions</a>
 <ul>
-<li><a href="#orgheadline62">General replacements</a></li>
-<li><a href="#orgheadline63">Styled references</a></li>
-<li><a href="#orgheadline64">Special characters</a></li>
+<li><a href="#sec-19-1">General replacements</a></li>
+<li><a href="#sec-19-2">Styled references</a></li>
+<li><a href="#sec-19-3">Special characters</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline65">Source code</a>
+<li><a href="#sec-20">Source code</a>
 <ul>
-<li><a href="#orgheadline66">Inline code</a></li>
-<li><a href="#orgheadline67">Code blocks (with syntax highlighting)</a></li>
-<li><a href="#orgheadline68">Source mode</a></li>
-<li><a href="#orgheadline69">Line break</a></li>
-<li><a href="#orgheadline70">Line numbers</a></li>
-<li><a href="#orgheadline71">Callouts</a></li>
+<li><a href="#sec-20-1">Inline code</a></li>
+<li><a href="#sec-20-2">Code blocks (with syntax highlighting)</a></li>
+<li><a href="#sec-20-3">Source mode</a></li>
+<li><a href="#sec-20-4">Line break</a></li>
+<li><a href="#sec-20-5">Line numbers</a></li>
+<li><a href="#sec-20-6">Callouts</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline72">Math</a>
+<li><a href="#sec-21">Math</a>
 <ul>
-<li><a href="#orgheadline73">Inline math expressions</a></li>
-<li><a href="#orgheadline74">Math expressions in display mode</a></li>
-<li><a href="#orgheadline75">Equation numbers</a></li>
+<li><a href="#sec-21-1">Inline math expressions</a></li>
+<li><a href="#sec-21-2">Math expressions in display mode</a></li>
+<li><a href="#sec-21-3">Equation numbers</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline76">Miscellaneous effects</a>
+<li><a href="#sec-22">Miscellaneous effects</a>
 <ul>
-<li><a href="#orgheadline77">Include Org files</a></li>
-<li><a href="#orgheadline78">Raw HTML</a></li>
-<li><a href="#orgheadline79">Raw LaTeX</a></li>
+<li><a href="#sec-22-1">Include Org files</a></li>
+<li><a href="#sec-22-2">Raw HTML</a></li>
+<li><a href="#sec-22-3">Raw LaTeX</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline80">Footnotes </a></li>
-<li><a href="#orgheadline81">Useful extensions</a>
+<li><a href="#sec-23">Footnotes </a></li>
+<li><a href="#sec-24">Useful extensions</a>
 <ul>
-<li><a href="#orgheadline82">Todo extension</a></li>
-<li><a href="#orgheadline83">Bigblow extension</a></li>
+<li><a href="#sec-24-1">Todo extension</a></li>
+<li><a href="#sec-24-2">Bigblow extension</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline84">Graphs with Graphviz</a>
+<li><a href="#sec-25">Graphs with Graphviz</a>
 <ul>
-<li><a href="#orgheadline85">Undirected</a></li>
-<li><a href="#orgheadline86">Directed</a></li>
+<li><a href="#sec-25-1">Undirected</a></li>
+<li><a href="#sec-25-2">Directed</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline87">Graphs with R</a>
+<li><a href="#sec-26">Graphs with R</a>
 <ul>
-<li><a href="#orgheadline88">Example</a></li>
+<li><a href="#sec-26-1">Example</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline89">Citations</a></li>
-<li><a href="#orgheadline90">Appendix</a>
+<li><a href="#sec-27">Citations</a></li>
+<li><a href="#sec-28">Appendix</a>
 <ul>
-<li><a href="#orgheadline91">Index</a></li>
-<li><a href="#orgheadline92">Bibliography</a></li>
-<li><a href="#orgheadline93">Glossary</a></li>
+<li><a href="#sec-28-1">Index</a></li>
+<li><a href="#sec-28-2">Bibliography</a></li>
+<li><a href="#sec-28-3">Glossary</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline94">Contributing</a>
+<li><a href="#sec-29">Contributing</a>
 <ul>
-<li><a href="#orgheadline95">Issues</a></li>
-<li><a href="#orgheadline96">Patches</a></li>
-<li><a href="#orgheadline97">Donations</a></li>
+<li><a href="#sec-29-1">Issues</a></li>
+<li><a href="#sec-29-2">Patches</a></li>
+<li><a href="#sec-29-3">Donations</a></li>
 </ul>
 </li>
-<li><a href="#orgheadline98">License</a></li>
+<li><a href="#sec-30">License</a></li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Document header</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Document header</h2>
+<div class="outline-text-2" id="text-3">
 <p>
 Title and author line:
 </p>
@@ -562,12 +571,12 @@ It&rsquo;s a good practice to also include an email line following the author li
 </div>
 </div>
 
-<div id="outline-container-orgheadline4" class="outline-2">
-<h2 id="orgheadline4">Document settings</h2>
-<div class="outline-text-2" id="text-orgheadline4">
-</div><div id="outline-container-orgheadline5" class="outline-3">
-<h3 id="orgheadline5">Document description</h3>
-<div class="outline-text-3" id="text-orgheadline5">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Document settings</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Document description</h3>
+<div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-meta-line">#+DESCRIPTION: This document catalogs a set of tips and tricks for composing documents in Org mode.</span>
@@ -578,9 +587,9 @@ It&rsquo;s a good practice to also include an email line following the author li
 </div>
 </div>
 
-<div id="outline-container-orgheadline6" class="outline-3">
-<h3 id="orgheadline6">Section numbering</h3>
-<div class="outline-text-3" id="text-orgheadline6">
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Section numbering</h3>
+<div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-meta-line">#+OPTIONS:   H:4</span>
@@ -595,9 +604,9 @@ It&rsquo;s a good practice to also include an email line following the author li
 </div>
 </div>
 
-<div id="outline-container-orgheadline7" class="outline-3">
-<h3 id="orgheadline7">Table of contents</h3>
-<div class="outline-text-3" id="text-orgheadline7">
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">Table of contents</h3>
+<div class="outline-text-3" id="text-4-3">
 <p>
 Set the <code>toc</code> attribute to activate an auto-generated table of contents (limited
 to its 2 first levels) at the top of document.
@@ -636,32 +645,32 @@ feature; for example:
 </div>
 </div>
 
-<div id="outline-container-orgheadline8" class="outline-3">
-<h3 id="orgheadline8">List of figures</h3>
-<div class="outline-text-3" id="text-orgheadline8">
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4">List of figures</h3>
+<div class="outline-text-3" id="text-4-4">
 <p>
 <code>#+TOC: figures</code> is not implemented yet in the HMTL backend.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline9" class="outline-3">
-<h3 id="orgheadline9">List of tables</h3>
-<div class="outline-text-3" id="text-orgheadline9">
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5">List of tables</h3>
+<div class="outline-text-3" id="text-4-5">
 <p>
 <code>#+TOC: tables</code> is already implemented in the HTML backend.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline10" class="outline-3">
-<h3 id="orgheadline10">List of equations</h3>
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6">List of equations</h3>
 </div>
 </div>
 
-<div id="outline-container-orgheadline11" class="outline-2">
-<h2 id="orgheadline11">Section titles (headings)</h2>
-<div class="outline-text-2" id="text-orgheadline11">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Section titles (headings)</h2>
+<div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-level-1">* Biggest heading (level 1)</span>
@@ -686,25 +695,25 @@ New sub-sub-section.
 </pre>
 </div>
 </div>
-<div id="outline-container-orgheadline12" class="outline-3">
-<h3 id="orgheadline12">Bigger heading (level 2)</h3>
-<div class="outline-text-3" id="text-orgheadline12">
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">Bigger heading (level 2)</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 New section.
 </p>
 </div>
 
-<div id="outline-container-orgheadline99" class="outline-4">
-<h4 id="orgheadline99">Big heading (level 3)</h4>
-<div class="outline-text-4" id="text-orgheadline99">
+<div id="outline-container-sec-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1">Big heading (level 3)</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <p>
 New sub-section.
 </p>
 </div>
 
-<div id="outline-container-orgheadline100" class="outline-5">
-<h5 id="orgheadline100">Heading (level 4)</h5>
-<div class="outline-text-5" id="text-orgheadline100">
+<div id="outline-container-sec-5-1-1-1" class="outline-5">
+<h5 id="sec-5-1-1-1">Heading (level 4)</h5>
+<div class="outline-text-5" id="text-5-1-1-1">
 <p>
 New sub-sub-section.
 </p>
@@ -713,9 +722,9 @@ New sub-sub-section.
 </div>
 </div>
 
-<div id="outline-container-orgheadline13" class="outline-3">
-<h3 id="orgheadline13">Numbered headings</h3>
-<div class="outline-text-3" id="text-orgheadline13">
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">Numbered headings</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 You can create numbered headings up to a certain level by setting an option:
 </p>
@@ -729,12 +738,12 @@ You can create numbered headings up to a certain level by setting an option:
 </div>
 </div>
 
-<div id="outline-container-orgheadline14" class="outline-2">
-<h2 id="orgheadline14">Paragraphs</h2>
-<div class="outline-text-2" id="text-orgheadline14">
-</div><div id="outline-container-orgheadline15" class="outline-3">
-<h3 id="orgheadline15">Normal</h3>
-<div class="outline-text-3" id="text-orgheadline15">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Paragraphs</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">Normal</h3>
+<div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 
 <pre class="src src-org">A single newline has no effect.
@@ -761,9 +770,9 @@ demarcates paragraphs.
 </div>
 </div>
 
-<div id="outline-container-orgheadline16" class="outline-3">
-<h3 id="orgheadline16">Line breaks</h3>
-<div class="outline-text-3" id="text-orgheadline16">
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">Line breaks</h3>
+<div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 
 <pre class="src src-org">By entering two consecutive backslashes, \\
@@ -780,9 +789,9 @@ without starting a new paragraph.
 </div>
 </div>
 
-<div id="outline-container-orgheadline17" class="outline-3">
-<h3 id="orgheadline17">Horizontal rules</h3>
-<div class="outline-text-3" id="text-orgheadline17">
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3">Horizontal rules</h3>
+<div class="outline-text-3" id="text-6-3">
 <div class="org-src-container">
 
 <pre class="src src-org">For an horizontal line, insert at least 5 dashes: this is some text above an
@@ -803,9 +812,9 @@ and some text below it.
 </div>
 </div>
 
-<div id="outline-container-orgheadline18" class="outline-3">
-<h3 id="orgheadline18">Text width</h3>
-<div class="outline-text-3" id="text-orgheadline18">
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4">Text width</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 One morning, when Gregor Samsa woke from troubled dreams, he found himself
 transformed in his bed into a horrible vermin. He lay on his armour-like back,
@@ -818,17 +827,17 @@ compared with the size of the rest of him, waved about helplessly as he looked.
 </div>
 </div>
 
-<div id="outline-container-orgheadline19" class="outline-2">
-<h2 id="orgheadline19">Formatting text</h2>
-<div class="outline-text-2" id="text-orgheadline19">
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Formatting text</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 Text effects.
 </p>
 </div>
 
-<div id="outline-container-orgheadline20" class="outline-3">
-<h3 id="orgheadline20">Bold and italic</h3>
-<div class="outline-text-3" id="text-orgheadline20">
+<div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">Bold and italic</h3>
+<div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-italic">Emphasize</span> (italics), <span class="org-bold">strongly</span> (bold), and <span class="org-bold">/very strongly/</span> (bold italics).
@@ -845,7 +854,7 @@ Markup elements can be nested:
 
 <div class="org-src-container">
 
-<pre class="src src-org">This is <span class="org-italic">italic text which contains </span><span class="org-underline"><span class="org-italic">underlined text</span></span><span class="org-italic"> within it</span>, whereas <span class="org-underline">this is</span>
+<pre class="src src-org">This is <span class="org-italic">italic text which contains </span><span class="org-italic"><span class="org-underline">underlined text</span></span><span class="org-italic"> within it</span>, whereas <span class="org-underline">this is</span>
 <span class="org-underline">normal underlined text</span>.
 </pre>
 </div>
@@ -890,9 +899,9 @@ Not feas*ible*.
 </div>
 </div>
 
-<div id="outline-container-orgheadline21" class="outline-3">
-<h3 id="orgheadline21">Monospace, superscript and subscript</h3>
-<div class="outline-text-3" id="text-orgheadline21">
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">Monospace, superscript and subscript</h3>
+<div class="outline-text-3" id="text-7-2">
 <p>
 Other elements to use sparingly are:
 </p>
@@ -901,25 +910,30 @@ Other elements to use sparingly are:
 
 <pre class="src src-org">- monospaced typewriter font for <span class="org-org-code">inline code</span>
 - monospaced typewriter font for <span class="org-org-verbatim">verbatim text</span>
-- <span class="ATTRLIST">deleted text</span> (vs. <span class="org-underline">inserted text</span>)
+- <span class="custom">deleted text</span> (vs. <span class="org-underline">inserted text</span>)
 - text with super<span class="org-org-latex-and-related">script</span>, such as 2<span class="org-org-latex-and-related">10</span>
 - text with sub<span class="org-org-latex-and-related">script</span>, such as H<span class="org-org-latex-and-related">2</span>O
 </pre>
 </div>
 
 <ul class="org-ul">
-<li>monospaced typewriter font for <code>inline code</code></li>
-<li>monospaced typewriter font for <code>verbatim text</code></li>
-<li><del>deleted text</del> (vs. <span class="underline">inserted text</span>)</li>
-<li>text with super<sup>script</sup>, such as 2<sup>10</sup></li>
-<li>text with sub<sub>script</sub>, such as H<sub>2</sub>O</li>
+<li>monospaced typewriter font for <code>inline code</code>
+</li>
+<li>monospaced typewriter font for <code>verbatim text</code>
+</li>
+<li><del>deleted text</del> (vs. <span class="underline">inserted text</span>)
+</li>
+<li>text with super<sup>script</sup>, such as 2<sup>10</sup>
+</li>
+<li>text with sub<sub>script</sub>, such as H<sub>2</sub>O
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline22" class="outline-3">
-<h3 id="orgheadline22">Smart punctuation</h3>
-<div class="outline-text-3" id="text-orgheadline22">
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3">Smart punctuation</h3>
+<div class="outline-text-3" id="text-7-3">
 <p>
 If the XXX option is specified, Org mode will produce typographically correct
 output, converting straight quotes to curly quotes, <code>---</code> to em-dashes, <code>--</code> to
@@ -929,18 +943,18 @@ en-dashes, and <code>...</code> to ellipses.
 </div>
 </div>
 
-<div id="outline-container-orgheadline23" class="outline-2">
-<h2 id="orgheadline23">Lists</h2>
-<div class="outline-text-2" id="text-orgheadline23">
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">Lists</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 Org markup allows you to create <b>bulleted</b> or <b>numbered</b> lists. It allows any
 combination of the two list types.
 </p>
 </div>
 
-<div id="outline-container-orgheadline24" class="outline-3">
-<h3 id="orgheadline24">Unordered lists</h3>
-<div class="outline-text-3" id="text-orgheadline24">
+<div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1">Unordered lists</h3>
+<div class="outline-text-3" id="text-8-1">
 <p>
 Itemized lists are marked with bullets. Create them with a minus or a plus sign.
 </p>
@@ -962,21 +976,25 @@ to read.
 
 <ul class="org-ul">
 <li>Item with some lengthy text wrapping hopefully across several lines. We add
-a few words to really show the line wrapping.</li>
+a few words to really show the line wrapping.
+</li>
 <li>Bullet.
 <ul class="org-ul">
 <li>Bullet.
 <ul class="org-ul">
-<li>Bullet.</li>
-</ul></li>
-</ul></li>
+<li>Bullet.
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline25" class="outline-3">
-<h3 id="orgheadline25">Checklists</h3>
-<div class="outline-text-3" id="text-orgheadline25">
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2">Checklists</h3>
+<div class="outline-text-3" id="text-8-2">
 <div class="org-src-container">
 
 <pre class="src src-org">- <span class="org-org-checkbox">[X]</span> Checked.
@@ -987,17 +1005,21 @@ a few words to really show the line wrapping.</li>
 </div>
 
 <ul class="org-ul">
-<li class="on">&#x2611; Checked.</li>
-<li class="trans">&#x2610; Half-checked.</li>
-<li class="off">&#x2610; Not checked.</li>
-<li>Normal list item.</li>
+<li>&#x2611; Checked.
+</li>
+<li>&#x2610; Half-checked.
+</li>
+<li>&#x2610; Not checked.
+</li>
+<li>Normal list item.
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline26" class="outline-3">
-<h3 id="orgheadline26">Ordered lists</h3>
-<div class="outline-text-3" id="text-orgheadline26">
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3">Ordered lists</h3>
+<div class="outline-text-3" id="text-8-3">
 <p>
 Enumerated lists are marked with numbers or letters:
 </p>
@@ -1020,12 +1042,18 @@ wrapping.
 <ol class="org-ol">
 <li>Upper case alpha (letter) numbered list item.
 <ol class="org-ol">
-<li>Lower alpha.</li>
-<li>Lower alpha.</li>
-</ol></li>
-<li>Upper alpha.</li>
-</ol></li>
-<li>Number.</li>
+<li>Lower alpha.
+</li>
+<li>Lower alpha.
+</li>
+</ol>
+</li>
+<li>Upper alpha.
+</li>
+</ol>
+</li>
+<li>Number.
+</li>
 </ol>
 
 <p>
@@ -1040,15 +1068,18 @@ You can have ordered lists with jumping numbers:
 </div>
 
 <ol class="org-ol">
-<li value="2">We start with point number 2.</li>
-<li>Automatically numbered item.</li>
+<li value="2">We start with point number 2.
+</li>
+<li>Automatically numbered item.
+</li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-orgheadline27" class="outline-3">
-<h3 id="orgheadline27"><a id="ID-f1a4a242-755b-4c38-9280-ee3f60e2b29a"></a>Definition lists</h3>
-<div class="outline-text-3" id="text-orgheadline27">
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4"><a id="ID-f1a4a242-755b-4c38-9280-ee3f60e2b29a" name="ID-f1a4a242-755b-4c38-9280-ee3f60e2b29a"></a>Definition lists</h3>
+<div class="outline-text-3" id="text-8-4">
+
 <p>
 Labeled, multi-line lists.
 </p>
@@ -1067,23 +1098,23 @@ Labeled, multi-line lists.
 </div>
 
 <dl class="org-dl">
-<dt>First term to define</dt><dd>Definition of the first term. We add a few words to show the line wrapping,
-to see what happens when you have long lines.</dd>
+<dt> First term to define </dt><dd>     Definition of the first term. We add a few words to show the line wrapping,
+to see what happens when you have long lines.
+</dd>
 
-<dt>Second term</dt><dd><p>
-     Explication of the second term with <b>inline markup</b>.
-</p>
+<dt> Second term </dt><dd>     Explication of the second term with <b>inline markup</b>.
 
 <p>
 In many paragraphs.
-</p></dd>
+</p>
+</dd>
 </dl>
 </div>
 </div>
 
-<div id="outline-container-orgheadline28" class="outline-3">
-<h3 id="orgheadline28">Separating lists</h3>
-<div class="outline-text-3" id="text-orgheadline28">
+<div id="outline-container-sec-8-5" class="outline-3">
+<h3 id="sec-8-5">Separating lists</h3>
+<div class="outline-text-3" id="text-8-5">
 <p>
 Adjacent lists sometimes like to fuse. To force the start of a new list, offset
 the two lists by an empty line comment:
@@ -1104,32 +1135,38 @@ the two lists by an empty line comment:
 </div>
 
 <ul class="org-ul">
-<li>apples</li>
-<li>oranges</li>
-<li>bananas</li>
+<li>apples
+</li>
+<li>oranges
+</li>
+<li>bananas
+</li>
 </ul>
 
 <ul class="org-ul">
-<li>carrots</li>
-<li>tomatoes</li>
-<li>celery</li>
+<li>carrots
+</li>
+<li>tomatoes
+</li>
+<li>celery
+</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline29" class="outline-2">
-<h2 id="orgheadline29">Tables</h2>
-<div class="outline-text-2" id="text-orgheadline29">
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9">Tables</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 Tables are one of the most refined areas of the Org mode syntax. They are very easy
 to create and to read.
 </p>
 </div>
 
-<div id="outline-container-orgheadline30" class="outline-3">
-<h3 id="orgheadline30">Simple table</h3>
-<div class="outline-text-3" id="text-orgheadline30">
+<div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1">Simple table</h3>
+<div class="outline-text-3" id="text-9-1">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-table">| Cell in column 1, row 1 | Cell in column 2, row 1 |</span>
@@ -1141,19 +1178,19 @@ to create and to read.
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">Cell in column 1, row 1</td>
-<td class="org-left">Cell in column 2, row 1</td>
+<td class="left">Cell in column 1, row 1</td>
+<td class="left">Cell in column 2, row 1</td>
 </tr>
 
 <tr>
-<td class="org-left">Cell in column 1, row 2</td>
-<td class="org-left">Cell in column 2, row 2</td>
+<td class="left">Cell in column 1, row 2</td>
+<td class="left">Cell in column 2, row 2</td>
 </tr>
 </tbody>
 </table>
@@ -1165,29 +1202,31 @@ a multi-line table cell in Org.
 </div>
 </div>
 
-<div id="outline-container-orgheadline31" class="outline-3">
-<h3 id="orgheadline31">Column formatting</h3>
-<div class="outline-text-3" id="text-orgheadline31">
+<div id="outline-container-sec-9-2" class="outline-3">
+<h3 id="sec-9-2">Column formatting</h3>
+<div class="outline-text-3" id="text-9-2">
 <p>
 Columns are automatically aligned:
 </p>
 
 <ul class="org-ul">
-<li>Number-rich columns to the right, and</li>
-<li>String-rich columns to the left.</li>
+<li>Number-rich columns to the right, and
+</li>
+<li>String-rich columns to the left.
+</li>
 </ul>
 </div>
 
-<div id="outline-container-orgheadline101" class="outline-4">
-<h4 id="orgheadline101">Table with aligned cells</h4>
-<div class="outline-text-4" id="text-orgheadline101">
+<div id="outline-container-sec-9-2-1" class="outline-4">
+<h4 id="sec-9-2-1">Table with aligned cells</h4>
+<div class="outline-text-4" id="text-9-2-1">
 <p>
 If you want to override the automatic alignment, use <code>&lt;r&gt;</code>, <code>&lt;c&gt;</code> or <code>&lt;l&gt;</code>.
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-org-meta-line">#+CAPTION:</span> <span class="org-org-block">Table with aligned columns</span>
+<pre class="src src-org"><span class="org-org-meta-line">#+CAPTION: Table with aligned columns</span>
 <span class="org-org-table">|          </span><span class="org-org-formula">&lt;r&gt;</span><span class="org-org-table"> | </span><span class="org-org-formula">&lt;c&gt;</span><span class="org-org-table">          | </span><span class="org-org-formula">&lt;l&gt;</span><span class="org-org-table">          |</span>
 <span class="org-org-table">|            1 | 2            | 3            |</span>
 <span class="org-org-table">|        Right | Center       | Left         |</span>
@@ -1199,43 +1238,43 @@ If you want to override the automatic alignment, use <code>&lt;r&gt;</code>, <co
 <caption class="t-above"><span class="table-number">Table 1:</span> Table with aligned columns</caption>
 
 <colgroup>
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-center" />
+<col  class="center" />
 
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-right">1</td>
-<td class="org-center">2</td>
-<td class="org-left">3</td>
+<td class="right">1</td>
+<td class="center">2</td>
+<td class="left">3</td>
 </tr>
 
 <tr>
-<td class="org-right">Right</td>
-<td class="org-center">Center</td>
-<td class="org-left">Left</td>
+<td class="right">Right</td>
+<td class="center">Center</td>
+<td class="left">Left</td>
 </tr>
 
 <tr>
-<td class="org-right">xxxxxxxxxxxx</td>
-<td class="org-center">xxxxxxxxxxxx</td>
-<td class="org-left">xxxxxxxxxxxx</td>
+<td class="right">xxxxxxxxxxxx</td>
+<td class="center">xxxxxxxxxxxx</td>
+<td class="left">xxxxxxxxxxxx</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgheadline102" class="outline-4">
-<h4 id="orgheadline102">Table with column size adjusted</h4>
+<div id="outline-container-sec-9-2-2" class="outline-4">
+<h4 id="sec-9-2-2">Table with column size adjusted</h4>
 </div>
 </div>
 
-<div id="outline-container-orgheadline32" class="outline-3">
-<h3 id="orgheadline32">Header row</h3>
-<div class="outline-text-3" id="text-orgheadline32">
+<div id="outline-container-sec-9-3" class="outline-3">
+<h3 id="sec-9-3">Header row</h3>
+<div class="outline-text-3" id="text-9-3">
 <p>
 You can create tables with an header row (by using an horizontal line of dashes
 to separate it from the rest of the table).
@@ -1243,7 +1282,7 @@ to separate it from the rest of the table).
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-org-meta-line">#+CAPTION:</span> <span class="org-org-block">Table with an header row</span>
+<pre class="src src-org"><span class="org-org-meta-line">#+CAPTION: Table with an header row</span>
 <span class="org-org-table">| Name of column 1 | Name of column 2 | Name of column 3 |</span>
 <span class="org-org-table">|------------------+------------------+------------------|</span>
 <span class="org-org-table">| Top left         | Top middle       |                  |</span>
@@ -1256,45 +1295,45 @@ to separate it from the rest of the table).
 <caption class="t-above"><span class="table-number">Table 2:</span> Table with an header row</caption>
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">Name of column 1</th>
-<th scope="col" class="org-left">Name of column 2</th>
-<th scope="col" class="org-left">Name of column 3</th>
+<th scope="col" class="left">Name of column 1</th>
+<th scope="col" class="left">Name of column 2</th>
+<th scope="col" class="left">Name of column 3</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left">Top left</td>
-<td class="org-left">Top middle</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">Top left</td>
+<td class="left">Top middle</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">Right</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">Right</td>
 </tr>
 
 <tr>
-<td class="org-left">Bottom left</td>
-<td class="org-left">Bottom middle</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">Bottom left</td>
+<td class="left">Bottom middle</td>
+<td class="left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgheadline33" class="outline-3">
-<h3 id="orgheadline33">A very long table</h3>
-<div class="outline-text-3" id="text-orgheadline33">
+<div id="outline-container-sec-9-4" class="outline-3">
+<h3 id="sec-9-4">A very long table</h3>
+<div class="outline-text-3" id="text-9-4">
 <p>
 To test &ldquo;sticky table headers&rdquo;&#x2026;
 </p>
@@ -1303,207 +1342,207 @@ To test &ldquo;sticky table headers&rdquo;&#x2026;
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">Name of column 1</th>
-<th scope="col" class="org-left">Name of column 2</th>
-<th scope="col" class="org-left">Name of column 3</th>
+<th scope="col" class="right">Name of column 1</th>
+<th scope="col" class="left">Name of column 2</th>
+<th scope="col" class="left">Name of column 3</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">Top left</td>
-<td class="org-left">Top middle</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">Top left</td>
+<td class="left">Top middle</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">2</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">2</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">3</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">3</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">4</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">4</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">5</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">5</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">6</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">6</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">7</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">7</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">8</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">8</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">9</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">9</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">10</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">10</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">11</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">11</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">12</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">12</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">13</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">13</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">14</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">14</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">15</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">Right</td>
+<td class="right">15</td>
+<td class="left">&#xa0;</td>
+<td class="left">Right</td>
 </tr>
 
 <tr>
-<td class="org-right">16</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">16</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">17</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">17</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">18</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">18</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">19</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">19</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">20</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">20</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">21</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">21</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">22</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">22</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">23</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">23</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">24</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">24</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">25</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">25</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">26</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">26</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">27</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">27</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">28</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">28</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">29</td>
-<td class="org-left">&#xa0;</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">29</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-right">Bottom left</td>
-<td class="org-left">Bottom middle</td>
-<td class="org-left">&#xa0;</td>
+<td class="right">Bottom left</td>
+<td class="left">Bottom middle</td>
+<td class="left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgheadline34" class="outline-3">
-<h3 id="orgheadline34">Table placement</h3>
-<div class="outline-text-3" id="text-orgheadline34">
+<div id="outline-container-sec-9-5" class="outline-3">
+<h3 id="sec-9-5">Table placement</h3>
+<div class="outline-text-3" id="text-9-5">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-meta-line">#+ATTR_LATEX: :center nil</span>
@@ -1516,19 +1555,19 @@ To test &ldquo;sticky table headers&rdquo;&#x2026;
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-right">a</td>
-<td class="org-right">b</td>
+<td class="right">a</td>
+<td class="right">b</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
-<td class="org-right">2</td>
+<td class="right">1</td>
+<td class="right">2</td>
 </tr>
 </tbody>
 </table>
@@ -1548,44 +1587,44 @@ XXX Different from the following:
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-right">a</td>
-<td class="org-right">b</td>
+<td class="right">a</td>
+<td class="right">b</td>
 </tr>
 
 <tr>
-<td class="org-right">1</td>
-<td class="org-right">2</td>
+<td class="right">1</td>
+<td class="right">2</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgheadline35" class="outline-3">
-<h3 id="orgheadline35">Align tables on the page</h3>
-<div class="outline-text-3" id="text-orgheadline35">
-</div><div id="outline-container-orgheadline103" class="outline-4">
-<h4 id="orgheadline103">Left</h4>
-<div class="outline-text-4" id="text-orgheadline103">
+<div id="outline-container-sec-9-6" class="outline-3">
+<h3 id="sec-9-6">Align tables on the page</h3>
+<div class="outline-text-3" id="text-9-6">
+</div><div id="outline-container-sec-9-6-1" class="outline-4">
+<h4 id="sec-9-6-1">Left</h4>
+<div class="outline-text-4" id="text-9-6-1">
 <p>
 Here is a table on the left side:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-org-meta-line">#+LATEX: \noindent</span>
+<pre class="src src-org"><span class="org-org-meta-line">#+LATEX:</span> <span class="org-org-block">\noindent</span>
 <span class="org-org-meta-line">#+ATTR_LATEX: :center nil</span>
 <span class="org-org-table">| a | b | c |</span>
 <span class="org-org-table">|---+---+---|</span>
 <span class="org-org-table">| 1 | 2 | 3 |</span>
 <span class="org-org-table">| 4 | 5 | 6 |</span>
-<span class="org-org-meta-line">#+LATEX: \hfill</span>
+<span class="org-org-meta-line">#+LATEX:</span> <span class="org-org-block">\hfill</span>
 </pre>
 </div>
 
@@ -1593,30 +1632,30 @@ Here is a table on the left side:
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">a</th>
-<th scope="col" class="org-right">b</th>
-<th scope="col" class="org-right">c</th>
+<th scope="col" class="right">a</th>
+<th scope="col" class="right">b</th>
+<th scope="col" class="right">c</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">1</td>
-<td class="org-right">2</td>
-<td class="org-right">3</td>
+<td class="right">1</td>
+<td class="right">2</td>
+<td class="right">3</td>
 </tr>
 
 <tr>
-<td class="org-right">4</td>
-<td class="org-right">5</td>
-<td class="org-right">6</td>
+<td class="right">4</td>
+<td class="right">5</td>
+<td class="right">6</td>
 </tr>
 </tbody>
 </table>
@@ -1628,9 +1667,9 @@ table, so it pushes the table to the left.
 </div>
 </div>
 
-<div id="outline-container-orgheadline104" class="outline-4">
-<h4 id="orgheadline104">Center</h4>
-<div class="outline-text-4" id="text-orgheadline104">
+<div id="outline-container-sec-9-6-2" class="outline-4">
+<h4 id="sec-9-6-2">Center</h4>
+<div class="outline-text-4" id="text-9-6-2">
 <p>
 Here is a centered table:
 </p>
@@ -1648,46 +1687,46 @@ Here is a centered table:
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">a</th>
-<th scope="col" class="org-right">b</th>
-<th scope="col" class="org-right">c</th>
+<th scope="col" class="right">a</th>
+<th scope="col" class="right">b</th>
+<th scope="col" class="right">c</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">1</td>
-<td class="org-right">2</td>
-<td class="org-right">3</td>
+<td class="right">1</td>
+<td class="right">2</td>
+<td class="right">3</td>
 </tr>
 
 <tr>
-<td class="org-right">4</td>
-<td class="org-right">5</td>
-<td class="org-right">6</td>
+<td class="right">4</td>
+<td class="right">5</td>
+<td class="right">6</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgheadline105" class="outline-4">
-<h4 id="orgheadline105">Right</h4>
-<div class="outline-text-4" id="text-orgheadline105">
+<div id="outline-container-sec-9-6-3" class="outline-4">
+<h4 id="sec-9-6-3">Right</h4>
+<div class="outline-text-4" id="text-9-6-3">
 <p>
 And here&rsquo;s a table on the right side:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-org-meta-line">#+LATEX: \hfill</span>
+<pre class="src src-org"><span class="org-org-meta-line">#+LATEX:</span> <span class="org-org-block">\hfill</span>
 <span class="org-org-meta-line">#+ATTR_LATEX: :center nil</span>
 <span class="org-org-table">| a | b | c |</span>
 <span class="org-org-table">|---+---+---|</span>
@@ -1700,30 +1739,30 @@ And here&rsquo;s a table on the right side:
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">a</th>
-<th scope="col" class="org-right">b</th>
-<th scope="col" class="org-right">c</th>
+<th scope="col" class="right">a</th>
+<th scope="col" class="right">b</th>
+<th scope="col" class="right">c</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">1</td>
-<td class="org-right">2</td>
-<td class="org-right">3</td>
+<td class="right">1</td>
+<td class="right">2</td>
+<td class="right">3</td>
 </tr>
 
 <tr>
-<td class="org-right">4</td>
-<td class="org-right">5</td>
-<td class="org-right">6</td>
+<td class="right">4</td>
+<td class="right">5</td>
+<td class="right">6</td>
 </tr>
 </tbody>
 </table>
@@ -1736,9 +1775,9 @@ to the right.
 </div>
 </div>
 
-<div id="outline-container-orgheadline36" class="outline-3">
-<h3 id="orgheadline36">Table size</h3>
-<div class="outline-text-3" id="text-orgheadline36">
+<div id="outline-container-sec-9-7" class="outline-3">
+<h3 id="sec-9-7">Table size</h3>
+<div class="outline-text-3" id="text-9-7">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-meta-line">#+ATTR_HTML: :width 100%</span>
@@ -1751,28 +1790,28 @@ to the right.
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="org-left">Cell in column 1, row 1</td>
-<td class="org-left">Cell in column 2, row 1</td>
+<td class="left">Cell in column 1, row 1</td>
+<td class="left">Cell in column 2, row 1</td>
 </tr>
 
 <tr>
-<td class="org-left">Cell in column 1, row 2</td>
-<td class="org-left">Cell in column 2, row 2</td>
+<td class="left">Cell in column 1, row 2</td>
+<td class="left">Cell in column 2, row 2</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 
-<div id="outline-container-orgheadline37" class="outline-3">
-<h3 id="orgheadline37">CSV</h3>
-<div class="outline-text-3" id="text-orgheadline37">
+<div id="outline-container-sec-9-8" class="outline-3">
+<h3 id="sec-9-8">CSV</h3>
+<div class="outline-text-3" id="text-9-8">
 <p>
 You can fill a table from a CSV file using R commands.
 </p>
@@ -1780,9 +1819,10 @@ You can fill a table from a CSV file using R commands.
 </div>
 </div>
 
-<div id="outline-container-orgheadline111" class="outline-2">
-<h2 id="links"><a id="orgheadline111"></a>Links</h2>
+<div id="outline-container-links" class="outline-2">
+<h2 id="links"><a id="sec-10" name="sec-10"></a>Links</h2>
 <div class="outline-text-2" id="text-links">
+
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-level-1">* Links</span>
@@ -1793,7 +1833,7 @@ You can fill a table from a CSV file using R commands.
 </div>
 
 <p>
-This document is available in <a href="org-mode-syntax.html">plain text</a>, <a href="org-mode-syntax.html">HTML</a> and <a href="org-mode-syntax.pdf">PDF</a>.
+This document is available in <a href="README.html">plain text</a>, <a href="README.html">HTML</a> and <a href="README.pdf">PDF</a>.
 </p>
 
 <p>
@@ -1801,9 +1841,9 @@ The links are delimited by double square brackets.
 </p>
 </div>
 
-<div id="outline-container-orgheadline38" class="outline-3">
-<h3 id="orgheadline38">External links</h3>
-<div class="outline-text-3" id="text-orgheadline38">
+<div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1">External links</h3>
+<div class="outline-text-3" id="text-10-1">
 <div class="org-src-container">
 
 <pre class="src src-org">See <span class="org-org-link"><a href="http://www.pirilampo.org">http://www.pirilampo.org</a></span> (automatic!) and the
@@ -1812,14 +1852,14 @@ The links are delimited by double square brackets.
 </div>
 
 <p>
-See <a href="http://www.pirilampo.org/">http://www.pirilampo.org/</a> (automatic!) and the
+See <a href="http://www.pirilampo.org">http://www.pirilampo.org</a> (automatic!) and the
 <a href="http://orgmode.org/">Org mode Web site</a>.
 </p>
 </div>
 
-<div id="outline-container-orgheadline106" class="outline-4">
-<h4 id="orgheadline106">Relative links</h4>
-<div class="outline-text-4" id="text-orgheadline106">
+<div id="outline-container-sec-10-1-1" class="outline-4">
+<h4 id="sec-10-1-1">Relative links</h4>
+<div class="outline-text-4" id="text-10-1-1">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-link"><a href="../README.html">Home</a></span>
@@ -1832,9 +1872,9 @@ See <a href="http://www.pirilampo.org/">http://www.pirilampo.org/</a> (automatic
 </div>
 </div>
 
-<div id="outline-container-orgheadline107" class="outline-4">
-<h4 id="orgheadline107">Email links</h4>
-<div class="outline-text-4" id="text-orgheadline107">
+<div id="outline-container-sec-10-1-2" class="outline-4">
+<h4 id="sec-10-1-2">Email links</h4>
+<div class="outline-text-4" id="text-10-1-2">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-link"><a href="mailto:john.doe@example.com">email John Doe</a></span>
@@ -1847,9 +1887,9 @@ See <a href="http://www.pirilampo.org/">http://www.pirilampo.org/</a> (automatic
 </div>
 </div>
 
-<div id="outline-container-orgheadline108" class="outline-4">
-<h4 id="orgheadline108">Image links</h4>
-<div class="outline-text-4" id="text-orgheadline108">
+<div id="outline-container-sec-10-1-3" class="outline-4">
+<h4 id="sec-10-1-3">Image links</h4>
+<div class="outline-text-4" id="text-10-1-3">
 <p>
 To get image links, put a link to a file in the description.
 </p>
@@ -1869,14 +1909,14 @@ leads to the Org mode home page.
 </div>
 </div>
 
-<div id="outline-container-orgheadline39" class="outline-3">
-<h3 id="orgheadline39"><a id="ID-0d2b0cb2-116c-4a61-a076-4c641faf4346"></a>Internal links</h3>
-<div class="outline-text-3" id="text-orgheadline39">
+<div id="outline-container-sec-10-2" class="outline-3">
+<h3 id="sec-10-2"><a id="ID-0d2b0cb2-116c-4a61-a076-4c641faf4346" name="ID-0d2b0cb2-116c-4a61-a076-4c641faf4346"></a>Internal links</h3>
+<div class="outline-text-3" id="text-10-2">
 </div>
 
-<div id="outline-container-orgheadline109" class="outline-4">
-<h4 id="orgheadline109">Inline anchors</h4>
-<div class="outline-text-4" id="text-orgheadline109">
+<div id="outline-container-sec-10-2-1" class="outline-4">
+<h4 id="sec-10-2-1">Inline anchors</h4>
+<div class="outline-text-4" id="text-10-2-1">
 <p>
 Anchors are used to specify hypertext link targets.
 </p>
@@ -1888,14 +1928,14 @@ Anchors are used to specify hypertext link targets.
 </div>
 
 <p>
-<a id="orgtarget1"></a> Inline anchors make arbitrary content referenceable.
+<a id="anchor" name="anchor"></a> Inline anchors make arbitrary content referenceable.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline110" class="outline-4">
-<h4 id="orgheadline110">Internal cross references</h4>
-<div class="outline-text-4" id="text-orgheadline110">
+<div id="outline-container-sec-10-2-2" class="outline-4">
+<h4 id="sec-10-2-2">Internal cross references</h4>
+<div class="outline-text-4" id="text-10-2-2">
 <p>
 Links generally point to an headline.
 </p>
@@ -1917,7 +1957,7 @@ To add a link to a figure (e.g., &ldquo;See Figure 1&rdquo;), just do:
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-meta-line">#+name: fig</span>
-<span class="org-org-meta-line">#+caption:</span> <span class="org-org-block">caption</span>
+<span class="org-org-meta-line">#+caption: caption</span>
 <span class="org-org-link"><a href="file:fig.png">file:fig.png</a></span>
 
 See figure <span class="org-org-link"><a href="fig">fig</a></span>.
@@ -1925,14 +1965,14 @@ See figure <span class="org-org-link"><a href="fig">fig</a></span>.
 </div>
 
 
-<div id="orgparagraph1" class="figure">
+<div id="fig" class="figure">
 <p><img src="fig.png" alt="fig.png" />
 </p>
 <p><span class="figure-number">Figure 1:</span> caption</p>
 </div>
 
 <p>
-See figure <a href="#orgparagraph1">1</a>.
+See figure <a href="#fig">1</a>.
 </p>
 
 <p>
@@ -1952,21 +1992,23 @@ document <i>or in another document</i>.
 See:
 </p>
 <ul class="org-ul">
-<li>Location <a href="#orgtarget1">cross reference</a>.</li>
-<li>Section <a href="#orgheadline39">Internal links</a></li>
+<li>Location <a href="#anchor">cross reference</a>.
+</li>
+<li>Section <a href="#sec-10-2">Internal links</a>
+</li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline40" class="outline-3">
-<h3 id="orgheadline40">Extensions that define new hyperlinks targets</h3>
+<div id="outline-container-sec-10-3" class="outline-3">
+<h3 id="sec-10-3">Extensions that define new hyperlinks targets</h3>
 </div>
 </div>
 
-<div id="outline-container-orgheadline41" class="outline-2">
-<h2 id="orgheadline41">Images</h2>
-<div class="outline-text-2" id="text-orgheadline41">
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11">Images</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 You can insert <b>image</b> files of different <b>formats</b> to a document:
 </p>
@@ -1975,53 +2017,53 @@ You can insert <b>image</b> files of different <b>formats</b> to a document:
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">&#xa0;</th>
-<th scope="col" class="org-left">HTML</th>
-<th scope="col" class="org-left">PDF</th>
+<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="left">HTML</th>
+<th scope="col" class="left">PDF</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left">gif</td>
-<td class="org-left">yes</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">gif</td>
+<td class="left">yes</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">jpeg</td>
-<td class="org-left">yes</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">jpeg</td>
+<td class="left">yes</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">png</td>
-<td class="org-left">yes</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">png</td>
+<td class="left">yes</td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left">bmp</td>
-<td class="org-left">(depends on browser support)</td>
-<td class="org-left">&#xa0;</td>
+<td class="left">bmp</td>
+<td class="left">(depends on browser support)</td>
+<td class="left">&#xa0;</td>
 </tr>
 </tbody>
 </table>
 </div>
 
-<div id="outline-container-orgheadline42" class="outline-3">
-<h3 id="orgheadline42">Inline picture</h3>
-<div class="outline-text-3" id="text-orgheadline42">
+<div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1">Inline picture</h3>
+<div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-org-meta-line">#+caption:</span> <span class="org-org-block">Org mode logo</span>
+<pre class="src src-org"><span class="org-org-meta-line">#+caption: Org mode logo</span>
 <span class="org-org-link"><a href="file:images/org-mode-unicorn.png">file:images/org-mode-unicorn.png</a></span>
 </pre>
 </div>
@@ -2045,35 +2087,32 @@ Click to see the <a href="images/org-mode-unicorn.png">Unicorn picture</a>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline43" class="outline-3">
-<h3 id="orgheadline43">Image alignment (using positioning)</h3>
-<div class="outline-text-3" id="text-orgheadline43">
+<div id="outline-container-sec-11-2" class="outline-3">
+<h3 id="sec-11-2">Image alignment (using positioning)</h3>
+<div class="outline-text-3" id="text-11-2">
 <p>
 Books usually align/float images on the right/left of the contents.
 </p>
 </div>
 
-<div id="outline-container-orgheadline112" class="outline-4">
-<h4 id="orgheadline112">Image is left aligned</h4>
+<div id="outline-container-sec-11-2-1" class="outline-4">
+<h4 id="sec-11-2-1">Image is left aligned</h4>
 </div>
 
-<div id="outline-container-orgheadline113" class="outline-4">
-<h4 id="orgheadline113">Image is right aligned</h4>
+<div id="outline-container-sec-11-2-2" class="outline-4">
+<h4 id="sec-11-2-2">Image is right aligned</h4>
 </div>
 
-<div id="outline-container-orgheadline114" class="outline-4">
-<h4 id="orgheadline114">Image is centered</h4>
-<div class="outline-text-4" id="text-orgheadline114">
-<p>
-<a href="test.pdf">test.pdf</a>
-</p>
+<div id="outline-container-sec-11-2-3" class="outline-4">
+<h4 id="sec-11-2-3">Image is centered</h4>
+<div class="outline-text-4" id="text-11-2-3">
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline44" class="outline-3">
-<h3 id="orgheadline44">Image attributes and values</h3>
-<div class="outline-text-3" id="text-orgheadline44">
+<div id="outline-container-sec-11-3" class="outline-3">
+<h3 id="sec-11-3">Image attributes and values</h3>
+<div class="outline-text-3" id="text-11-3">
 <p>
 XXX Available HTML image tags include &#x2026;
 </p>
@@ -2082,60 +2121,60 @@ XXX Available HTML image tags include &#x2026;
 
 
 <colgroup>
-<col  class="org-left" />
+<col  class="left" />
 
-<col  class="org-left" />
+<col  class="left" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-left">Attribute</th>
-<th scope="col" class="org-left">Value(s)</th>
+<th scope="col" class="left">Attribute</th>
+<th scope="col" class="left">Value(s)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-left"><code>:alt</code></td>
-<td class="org-left">Alternate text</td>
+<td class="left"><code>:alt</code></td>
+<td class="left">Alternate text</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>:height</code></td>
-<td class="org-left">&#xa0;</td>
+<td class="left"><code>:height</code></td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>:width</code></td>
-<td class="org-left">User defined size in pixels</td>
+<td class="left"><code>:width</code></td>
+<td class="left">User defined size in pixels</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>:align</code></td>
-<td class="org-left">&#xa0;</td>
+<td class="left"><code>:align</code></td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>:border</code></td>
-<td class="org-left">&#xa0;</td>
+<td class="left"><code>:border</code></td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>:bordercolor</code></td>
-<td class="org-left">&#xa0;</td>
+<td class="left"><code>:bordercolor</code></td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>:hspace</code></td>
-<td class="org-left">&#xa0;</td>
+<td class="left"><code>:hspace</code></td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>:vspace</code></td>
-<td class="org-left">&#xa0;</td>
+<td class="left"><code>:vspace</code></td>
+<td class="left">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-left"><code>:title</code></td>
-<td class="org-left">User defined text</td>
+<td class="left"><code>:title</code></td>
+<td class="left">User defined text</td>
 </tr>
 </tbody>
 </table>
@@ -2159,9 +2198,9 @@ Place images side by side: XXX
 </div>
 </div>
 
-<div id="outline-container-orgheadline45" class="outline-3">
-<h3 id="orgheadline45">Figures</h3>
-<div class="outline-text-3" id="text-orgheadline45">
+<div id="outline-container-sec-11-4" class="outline-3">
+<h3 id="sec-11-4">Figures</h3>
+<div class="outline-text-3" id="text-11-4">
 <p>
 To define images that will be <b>treated as book illustrations</b> (figures) and
 automatically labeled and numbered, use XXX.
@@ -2170,9 +2209,9 @@ automatically labeled and numbered, use XXX.
 </div>
 </div>
 
-<div id="outline-container-orgheadline46" class="outline-2">
-<h2 id="orgheadline46">Videos</h2>
-<div class="outline-text-2" id="text-orgheadline46">
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12">Videos</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 Videos can&rsquo;t be added directly.
 </p>
@@ -2195,9 +2234,9 @@ Though, you can add an image with a link to the video like this:
 </div>
 </div>
 
-<div id="outline-container-orgheadline47" class="outline-2">
-<h2 id="orgheadline47">Admonitions</h2>
-<div class="outline-text-2" id="text-orgheadline47">
+<div id="outline-container-sec-13" class="outline-2">
+<h2 id="sec-13">Admonitions</h2>
+<div class="outline-text-2" id="text-13">
 <p>
 Admonitions (contextual backgrounds) are statements taken out of the content&rsquo;s
 flow and labeled with a title.
@@ -2208,11 +2247,16 @@ Common admonitions are:
 </p>
 
 <ol class="org-ol">
-<li><code>note</code></li>
-<li><code>warning</code></li>
-<li><code>tip</code></li>
-<li><code>caution</code></li>
-<li><code>important</code></li>
+<li><code>note</code>
+</li>
+<li><code>warning</code>
+</li>
+<li><code>tip</code>
+</li>
+<li><code>caution</code>
+</li>
+<li><code>important</code>
+</li>
 </ol>
 
 <p>
@@ -2220,12 +2264,12 @@ Common admonitions are:
 </p>
 </div>
 
-<div id="outline-container-orgheadline48" class="outline-3">
-<h3 id="orgheadline48">Base admonitions</h3>
-<div class="outline-text-3" id="text-orgheadline48">
-</div><div id="outline-container-orgheadline115" class="outline-4">
-<h4 id="orgheadline115">Note</h4>
-<div class="outline-text-4" id="text-orgheadline115">
+<div id="outline-container-sec-13-1" class="outline-3">
+<h3 id="sec-13-1">Base admonitions</h3>
+<div class="outline-text-3" id="text-13-1">
+</div><div id="outline-container-sec-13-1-1" class="outline-4">
+<h4 id="sec-13-1-1">Note</h4>
+<div class="outline-text-4" id="text-13-1-1">
 <p>
 A note box is displayed as follows:
 </p>
@@ -2247,9 +2291,9 @@ This is a useful note.
 </div>
 </div>
 
-<div id="outline-container-orgheadline116" class="outline-4">
-<h4 id="orgheadline116">Warning</h4>
-<div class="outline-text-4" id="text-orgheadline116">
+<div id="outline-container-sec-13-1-2" class="outline-4">
+<h4 id="sec-13-1-2">Warning</h4>
+<div class="outline-text-4" id="text-13-1-2">
 <p>
 A warning box is displayed as follows:
 </p>
@@ -2271,9 +2315,9 @@ Be careful!  Check that you have&#x2026;
 </div>
 </div>
 
-<div id="outline-container-orgheadline117" class="outline-4">
-<h4 id="orgheadline117">Tip</h4>
-<div class="outline-text-4" id="text-orgheadline117">
+<div id="outline-container-sec-13-1-3" class="outline-4">
+<h4 id="sec-13-1-3">Tip</h4>
+<div class="outline-text-4" id="text-13-1-3">
 <p>
 A tip box is displayed as follows:
 </p>
@@ -2295,9 +2339,9 @@ Try doing it this way&#x2026;
 </div>
 </div>
 
-<div id="outline-container-orgheadline118" class="outline-4">
-<h4 id="orgheadline118">Caution</h4>
-<div class="outline-text-4" id="text-orgheadline118">
+<div id="outline-container-sec-13-1-4" class="outline-4">
+<h4 id="sec-13-1-4">Caution</h4>
+<div class="outline-text-4" id="text-13-1-4">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_caution</span>
@@ -2315,9 +2359,9 @@ Caution
 </div>
 </div>
 
-<div id="outline-container-orgheadline119" class="outline-4">
-<h4 id="orgheadline119">Important</h4>
-<div class="outline-text-4" id="text-orgheadline119">
+<div id="outline-container-sec-13-1-5" class="outline-4">
+<h4 id="sec-13-1-5">Important</h4>
+<div class="outline-text-4" id="text-13-1-5">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_important</span>
@@ -2336,12 +2380,12 @@ Important
 </div>
 </div>
 
-<div id="outline-container-orgheadline49" class="outline-3">
-<h3 id="orgheadline49">Additional admonitions</h3>
-<div class="outline-text-3" id="text-orgheadline49">
-</div><div id="outline-container-orgheadline120" class="outline-4">
-<h4 id="orgheadline120">Attention</h4>
-<div class="outline-text-4" id="text-orgheadline120">
+<div id="outline-container-sec-13-2" class="outline-3">
+<h3 id="sec-13-2">Additional admonitions</h3>
+<div class="outline-text-3" id="text-13-2">
+</div><div id="outline-container-sec-13-2-1" class="outline-4">
+<h4 id="sec-13-2-1">Attention</h4>
+<div class="outline-text-4" id="text-13-2-1">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_attention</span>
@@ -2359,9 +2403,9 @@ Attention
 </div>
 </div>
 
-<div id="outline-container-orgheadline121" class="outline-4">
-<h4 id="orgheadline121">Hint</h4>
-<div class="outline-text-4" id="text-orgheadline121">
+<div id="outline-container-sec-13-2-2" class="outline-4">
+<h4 id="sec-13-2-2">Hint</h4>
+<div class="outline-text-4" id="text-13-2-2">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_hint</span>
@@ -2379,9 +2423,9 @@ Hint
 </div>
 </div>
 
-<div id="outline-container-orgheadline122" class="outline-4">
-<h4 id="orgheadline122">Error</h4>
-<div class="outline-text-4" id="text-orgheadline122">
+<div id="outline-container-sec-13-2-3" class="outline-4">
+<h4 id="sec-13-2-3">Error</h4>
+<div class="outline-text-4" id="text-13-2-3">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_error</span>
@@ -2399,9 +2443,9 @@ Error
 </div>
 </div>
 
-<div id="outline-container-orgheadline123" class="outline-4">
-<h4 id="orgheadline123">Danger</h4>
-<div class="outline-text-4" id="text-orgheadline123">
+<div id="outline-container-sec-13-2-4" class="outline-4">
+<h4 id="sec-13-2-4">Danger</h4>
+<div class="outline-text-4" id="text-13-2-4">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_danger</span>
@@ -2419,13 +2463,13 @@ Danger
 </div>
 </div>
 
-<div id="outline-container-orgheadline124" class="outline-4">
-<h4 id="orgheadline124">SeeAlso (Sphinx additional)</h4>
-<div class="outline-text-4" id="text-orgheadline124">
+<div id="outline-container-sec-13-2-5" class="outline-4">
+<h4 id="sec-13-2-5">SeeAlso (Sphinx additional)</h4>
+<div class="outline-text-4" id="text-13-2-5">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_seealso</span>
-- <span class="org-org-list-dt"><span class="org-org-link"><a href="http://en.wikipedia.org/wiki/Apple">Apples</a></span></span><span class="org-org-list-dt"> ::</span>
+- <span class="org-org-link"><span class="org-org-list-dt"><a href="http://en.wikipedia.org/wiki/Apple">Apples</a></span></span><span class="org-org-list-dt"> ::</span>
      A kind of <span class="org-org-link"><a href="http://en.wikipedia.org/wiki/Fruit">fruit</a></span>.
 <span class="org-org-block-end-line">#+end_seealso</span>
 </pre>
@@ -2433,7 +2477,8 @@ Danger
 
 <div class="seealso">
 <dl class="org-dl">
-<dt><a href="http://en.wikipedia.org/wiki/Apple">Apples</a></dt><dd>A kind of <a href="http://en.wikipedia.org/wiki/Fruit">fruit</a>.</dd>
+<dt> <a href="http://en.wikipedia.org/wiki/Apple">Apples</a> </dt><dd>     A kind of <a href="http://en.wikipedia.org/wiki/Fruit">fruit</a>.
+</dd>
 </dl>
 
 </div>
@@ -2441,9 +2486,9 @@ Danger
 </div>
 </div>
 
-<div id="outline-container-orgheadline50" class="outline-3">
-<h3 id="orgheadline50">Todo admonition</h3>
-<div class="outline-text-3" id="text-orgheadline50">
+<div id="outline-container-sec-13-3" class="outline-3">
+<h3 id="sec-13-3">Todo admonition</h3>
+<div class="outline-text-3" id="text-13-3">
 <p>
 Simple box (&ldquo;inline task&rdquo;):
 </p>
@@ -2476,7 +2521,7 @@ or:
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-org-hide">*************</span><span class="org-org-inlinetask">** </span><span class="org-leuven-org-waiting-for-kwd">WAIT</span><span class="org-org-inlinetask"> </span><span class="ATTRLIST">[#B]</span><span class="org-org-inlinetask"> Do also this other task                        </span><span class="org-org-tag"><span class="org-org-inlinetask">:phone:</span></span>
+<pre class="src src-org"><span class="org-org-hide">*************</span><span class="org-org-inlinetask">** </span><span class="org-leuven-org-waiting-for-kwd">WAIT</span><span class="org-org-inlinetask"> </span><span class="custom">[#B]</span><span class="org-org-inlinetask"> Do also this other task                        </span><span class="org-org-inlinetask"><span class="org-org-tag">:phone:</span></span>
 <span class="org-org-hide">*************</span><span class="org-org-inlinetask">** END</span>
 </pre>
 </div>
@@ -2502,7 +2547,11 @@ e.g.:
 </p>
 
 <p>
+:FIXME:
 &#x2026;
+</p>
+<p>
+:END:
 </p>
 
 <p>
@@ -2513,9 +2562,9 @@ You can then control what drawers are exported with
 </div>
 </div>
 
-<div id="outline-container-orgheadline51" class="outline-2">
-<h2 id="orgheadline51">Centered text</h2>
-<div class="outline-text-2" id="text-orgheadline51">
+<div id="outline-container-sec-14" class="outline-2">
+<h2 id="sec-14">Centered text</h2>
+<div class="outline-text-2" id="text-14">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_left</span>
@@ -2543,7 +2592,7 @@ aligned to the left!
 
 </div>
 
-<div class="org-center">
+<div class="center">
 <p>
 This text is <br  />
 centered!
@@ -2560,9 +2609,9 @@ aligned to the right!
 </div>
 </div>
 
-<div id="outline-container-orgheadline52" class="outline-2">
-<h2 id="orgheadline52">Sidebar</h2>
-<div class="outline-text-2" id="text-orgheadline52">
+<div id="outline-container-sec-15" class="outline-2">
+<h2 id="sec-15">Sidebar</h2>
+<div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 
 <pre class="src src-org">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -2628,9 +2677,9 @@ commodo. Curabitur accumsan. Nam sed metus. Etiam tristique bibendum justo.
 </div>
 </div>
 
-<div id="outline-container-orgheadline53" class="outline-2">
-<h2 id="orgheadline53">Example</h2>
-<div class="outline-text-2" id="text-orgheadline53">
+<div id="outline-container-sec-16" class="outline-2">
+<h2 id="sec-16">Example</h2>
+<div class="outline-text-2" id="text-16">
 <p>
 You can have <code>example</code> blocks.
 </p>
@@ -2683,14 +2732,14 @@ or
 </div>
 </div>
 
-<div id="outline-container-orgheadline54" class="outline-2">
-<h2 id="orgheadline54">Prose excerpts</h2>
-<div class="outline-text-2" id="text-orgheadline54">
-</div><div id="outline-container-orgheadline55" class="outline-3">
-<h3 id="orgheadline55">Quote</h3>
-<div class="outline-text-3" id="text-orgheadline55">
+<div id="outline-container-sec-17" class="outline-2">
+<h2 id="sec-17">Prose excerpts</h2>
+<div class="outline-text-2" id="text-17">
+</div><div id="outline-container-sec-17-1" class="outline-3">
+<h3 id="sec-17-1">Quote</h3>
+<div class="outline-text-3" id="text-17-1">
 <p>
-Use the <code>quote</code> block for content that <b>doesn't require the preservation of line
+Use the <code>quote</code> block for content that <b>doesn&rsquo;t require the preservation of line
 breaks</b>.
 </p>
 
@@ -2760,9 +2809,9 @@ but not any simpler. &#x2013; Albert Einstein
 </div>
 </div>
 
-<div id="outline-container-orgheadline56" class="outline-3">
-<h3 id="orgheadline56">Verse</h3>
-<div class="outline-text-3" id="text-orgheadline56">
+<div id="outline-container-sec-17-2" class="outline-3">
+<h3 id="sec-17-2">Verse</h3>
+<div class="outline-text-3" id="text-17-2">
 <p>
 In a <code>verse</code> environment, there is an <b>implicit line break at the end of each line</b>,
 and <b>indentation</b> is preserved:
@@ -2816,9 +2865,9 @@ preserved.<br  />
 </div>
 </div>
 
-<div id="outline-container-orgheadline57" class="outline-3">
-<h3 id="orgheadline57">Block quote with optional attribution line</h3>
-<div class="outline-text-3" id="text-orgheadline57">
+<div id="outline-container-sec-17-3" class="outline-3">
+<h3 id="sec-17-3">Block quote with optional attribution line</h3>
+<div class="outline-text-3" id="text-17-3">
 <div class="epigraph">
 <p>
 epigraph
@@ -2828,9 +2877,9 @@ epigraph
 </div>
 </div>
 
-<div id="outline-container-orgheadline58" class="outline-3">
-<h3 id="orgheadline58">Block quotes with their own class attribute</h3>
-<div class="outline-text-3" id="text-orgheadline58">
+<div id="outline-container-sec-17-4" class="outline-3">
+<h3 id="sec-17-4">Block quotes with their own class attribute</h3>
+<div class="outline-text-3" id="text-17-4">
 <div class="highlights">
 <p>
 highlights
@@ -2854,9 +2903,9 @@ Blockquote
 </div>
 </div>
 
-<div id="outline-container-orgheadline59" class="outline-3">
-<h3 id="orgheadline59">Non-breaking space</h3>
-<div class="outline-text-3" id="text-orgheadline59">
+<div id="outline-container-sec-17-5" class="outline-3">
+<h3 id="sec-17-5">Non-breaking space</h3>
+<div class="outline-text-3" id="text-17-5">
 <p>
 Insert the Unicode character <code>00A0</code> to add a non-breaking space.
 </p>
@@ -2868,9 +2917,9 @@ FIXME Or add/use an Org entity?  Or use tilde?
 </div>
 </div>
 
-<div id="outline-container-orgheadline60" class="outline-2">
-<h2 id="orgheadline60">Comments</h2>
-<div class="outline-text-2" id="text-orgheadline60">
+<div id="outline-container-sec-18" class="outline-2">
+<h2 id="sec-18">Comments</h2>
+<div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 
 <pre class="src src-org">It's possible to add comments in the document.
@@ -2915,17 +2964,17 @@ appropriate `org-export-with-drawers&rsquo; value, e.g.,
 </div>
 </div>
 
-<div id="outline-container-orgheadline61" class="outline-2">
-<h2 id="orgheadline61">Substitutions</h2>
-<div class="outline-text-2" id="text-orgheadline61">
-</div><div id="outline-container-orgheadline62" class="outline-3">
-<h3 id="orgheadline62">General replacements</h3>
-<div class="outline-text-3" id="text-orgheadline62">
+<div id="outline-container-sec-19" class="outline-2">
+<h2 id="sec-19">Substitutions</h2>
+<div class="outline-text-2" id="text-19">
+</div><div id="outline-container-sec-19-1" class="outline-3">
+<h3 id="sec-19-1">General replacements</h3>
+<div class="outline-text-3" id="text-19-1">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-meta-line">#+MACRO: longtext this very very long text</span>
 
-Insert <span class="org-org-macro">longtext</span> wherever required.
+Insert <span class="org-org-macro">{{{longtext}}}</span> wherever required.
 </pre>
 </div>
 
@@ -2935,16 +2984,16 @@ Insert this very very long text wherever required.
 </div>
 </div>
 
-<div id="outline-container-orgheadline63" class="outline-3">
-<h3 id="orgheadline63">Styled references</h3>
-<div class="outline-text-3" id="text-orgheadline63">
+<div id="outline-container-sec-19-2" class="outline-3">
+<h3 id="sec-19-2">Styled references</h3>
+<div class="outline-text-3" id="text-19-2">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-meta-line">#+MACRO: color @@html:&lt;span style="color: $1"&gt;$2&lt;/span&gt;@@</span>
 
-<span class="org-org-macro">color(blue, This text is colored in blue.)</span>
+<span class="org-org-macro">{{{color(blue, This text is colored in blue.)}}}</span>
 
-<span class="org-org-macro">color(red, This other text is in red.)</span>
+<span class="org-org-macro">{{{color(red, This other text is in red.)}}}</span>
 </pre>
 </div>
 
@@ -2962,18 +3011,18 @@ Find more macros on <a href="https://github.com/fniessen/org-macros">GitHub</a>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline64" class="outline-3">
-<h3 id="orgheadline64">Special characters</h3>
-<div class="outline-text-3" id="text-orgheadline64">
+<div id="outline-container-sec-19-3" class="outline-3">
+<h3 id="sec-19-3">Special characters</h3>
+<div class="outline-text-3" id="text-19-3">
 <p>
 We also use substitutions to include some of the widely used Unicode characters
 (like ©, converted from text characters to its typographically correct entity).
 </p>
 </div>
 
-<div id="outline-container-orgheadline125" class="outline-4">
-<h4 id="orgheadline125">Accents</h4>
-<div class="outline-text-4" id="text-orgheadline125">
+<div id="outline-container-sec-19-3-1" class="outline-4">
+<h4 id="sec-19-3-1">Accents</h4>
+<div class="outline-text-4" id="text-19-3-1">
 <div class="org-src-container">
 
 <pre class="src src-org">- <span class="org-org-latex-and-related">\Agrave \Aacute</span>
@@ -2981,14 +3030,15 @@ We also use substitutions to include some of the widely used Unicode characters
 </div>
 
 <ul class="org-ul">
-<li>&Agrave; &Aacute;</li>
+<li>&Agrave; &Aacute;
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline126" class="outline-4">
-<h4 id="orgheadline126">Punctuation</h4>
-<div class="outline-text-4" id="text-orgheadline126">
+<div id="outline-container-sec-19-3-2" class="outline-4">
+<h4 id="sec-19-3-2">Punctuation</h4>
+<div class="outline-text-4" id="text-19-3-2">
 <div class="org-src-container">
 
 <pre class="src src-org">- Dash: <span class="org-org-latex-and-related">\ndash \mdash</span>
@@ -2999,17 +3049,21 @@ We also use substitutions to include some of the widely used Unicode characters
 </div>
 
 <ul class="org-ul">
-<li>Dash: &ndash; &mdash;</li>
-<li>Marks: &iexcl; &iquest;</li>
-<li>Quotations: &laquo; &raquo;</li>
-<li>Miscellaneous: &para; &ordf;</li>
+<li>Dash: &ndash; &mdash;
+</li>
+<li>Marks: &iexcl; &iquest;
+</li>
+<li>Quotations: &laquo; &raquo;
+</li>
+<li>Miscellaneous: &para; &ordf;
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline127" class="outline-4">
-<h4 id="orgheadline127">Commercial symbols</h4>
-<div class="outline-text-4" id="text-orgheadline127">
+<div id="outline-container-sec-19-3-3" class="outline-4">
+<h4 id="sec-19-3-3">Commercial symbols</h4>
+<div class="outline-text-4" id="text-19-3-3">
 <div class="org-src-container">
 
 <pre class="src src-org">- Property marks: <span class="org-org-latex-and-related">\copy \reg</span>
@@ -3018,15 +3072,17 @@ We also use substitutions to include some of the widely used Unicode characters
 </div>
 
 <ul class="org-ul">
-<li>Property marks: &copy; &reg;</li>
-<li>Currency: &cent; &euro; &yen; &pound;</li>
+<li>Property marks: &copy; &reg;
+</li>
+<li>Currency: &cent; &euro; &yen; &pound;
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline128" class="outline-4">
-<h4 id="orgheadline128">Greek characters</h4>
-<div class="outline-text-4" id="text-orgheadline128">
+<div id="outline-container-sec-19-3-4" class="outline-4">
+<h4 id="sec-19-3-4">Greek characters</h4>
+<div class="outline-text-4" id="text-19-3-4">
 <div class="org-src-container">
 
 <pre class="src src-org">The Greek letters <span class="org-org-latex-and-related">\alpha,</span> <span class="org-org-latex-and-related">\beta,</span> and <span class="org-org-latex-and-related">\gamma </span>are used to denote angles.
@@ -3039,9 +3095,9 @@ The Greek letters &alpha;, &beta;, and &gamma; are used to denote angles.
 </div>
 </div>
 
-<div id="outline-container-orgheadline129" class="outline-4">
-<h4 id="orgheadline129">Math characters</h4>
-<div class="outline-text-4" id="text-orgheadline129">
+<div id="outline-container-sec-19-3-5" class="outline-4">
+<h4 id="sec-19-3-5">Math characters</h4>
+<div class="outline-text-4" id="text-19-3-5">
 <div class="org-src-container">
 
 <pre class="src src-org">- Science: <span class="org-org-latex-and-related">\pm \div</span>
@@ -3052,17 +3108,21 @@ The Greek letters &alpha;, &beta;, and &gamma; are used to denote angles.
 </div>
 
 <ul class="org-ul">
-<li>Science: &plusmn; &divide;</li>
-<li>Arrows: &rarr; &rarr; &larr; &harr; &rArr; &lArr; &hArr;</li>
-<li>Function names: arccos cos</li>
-<li>Signs and symbols: &bull; *</li>
+<li>Science: &plusmn; &divide;
+</li>
+<li>Arrows: &rarr; &rarr; &larr; &harr; &rArr; &lArr; &hArr;
+</li>
+<li>Function names: arccos cos
+</li>
+<li>Signs and symbols: &bull; *
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline130" class="outline-4">
-<h4 id="orgheadline130">Misc</h4>
-<div class="outline-text-4" id="text-orgheadline130">
+<div id="outline-container-sec-19-3-6" class="outline-4">
+<h4 id="sec-19-3-6">Misc</h4>
+<div class="outline-text-4" id="text-19-3-6">
 <div class="org-src-container">
 
 <pre class="src src-org">- Zero-width non-joiner: <span class="org-org-latex-and-related">\zwnj</span>
@@ -3072,10 +3132,12 @@ The Greek letters &alpha;, &beta;, and &gamma; are used to denote angles.
 </div>
 
 <ul class="org-ul">
-<li>Zero-width non-joiner: &zwnj;</li>
+<li>Zero-width non-joiner: &zwnj;
+</li>
 </ul>
 <ul class="org-ul">
-<li>Suits: &clubs; &spades;</li>
+<li>Suits: &clubs; &spades;
+</li>
 </ul>
 
 <div class="note">
@@ -3090,12 +3152,12 @@ You can insert a real &ldquo;zero-width space&rdquo; Unicode character by pressi
 </div>
 </div>
 
-<div id="outline-container-orgheadline65" class="outline-2">
-<h2 id="orgheadline65">Source code</h2>
-<div class="outline-text-2" id="text-orgheadline65">
-</div><div id="outline-container-orgheadline66" class="outline-3">
-<h3 id="orgheadline66">Inline code</h3>
-<div class="outline-text-3" id="text-orgheadline66">
+<div id="outline-container-sec-20" class="outline-2">
+<h2 id="sec-20">Source code</h2>
+<div class="outline-text-2" id="text-20">
+</div><div id="outline-container-sec-20-1" class="outline-3">
+<h3 id="sec-20-1">Inline code</h3>
+<div class="outline-text-3" id="text-20-1">
 <div class="org-src-container">
 
 <pre class="src src-org">Reference code like <span class="org-org-code">variables</span> or <span class="org-org-code">functions</span> inline.
@@ -3107,40 +3169,41 @@ Reference code like <code>variables</code> or <code>functions</code> inline.
 </p>
 
 <p>
-You can also evaluate code inline as follows: 1 + 1 is <code class="src src-R"><span class="org-ess-numbers">1</span> <span class="org-constant">+</span> <span class="org-ess-numbers">1</span>
-</code> <code>2</code>.
+You can also evaluate code inline as follows: 1 + 1 is #+BEGIN_SRC R
+1 + 1
+#+END_SRC <code>2</code>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline67" class="outline-3">
-<h3 id="orgheadline67">Code blocks (with syntax highlighting)</h3>
-<div class="outline-text-3" id="text-orgheadline67">
+<div id="outline-container-sec-20-2" class="outline-3">
+<h3 id="sec-20-2">Code blocks (with syntax highlighting)</h3>
+<div class="outline-text-3" id="text-20-2">
 <p>
 The source code blocks support syntax highlighting:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-cpp"><span class="org-comment-delimiter">/*</span>
-<span class="org-comment"> * Application that displays a "Hello" message to the standard output.</span>
-<span class="org-comment"> */</span>
-<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">arc</span>, <span class="org-type">char</span> **<span class="org-variable-name">argv</span>)
-{
-  printf(<span class="org-string">"Hello, %s!\n"</span>, (argc&gt;1) ? argv[1] : <span class="org-string">"World"</span>);
-  <span class="org-keyword">return</span> 0;
-}
+<pre class="src src-cpp"><span class="org-comment-delimiter">/*</span>
+<span class="org-comment"> * Application that displays a "Hello" message to the standard output.</span>
+<span class="org-comment"> */</span>
+<span class="org-type">int</span> <span class="org-function-name">main</span>(<span class="org-type">int</span> <span class="org-variable-name">arc</span>, <span class="org-type">char</span> **<span class="org-variable-name">argv</span>)
+{
+  printf(<span class="org-string">"Hello, %s!\n"</span>, (argc&gt;1) ? argv[1] : <span class="org-string">"World"</span>);
+  <span class="org-keyword">return</span> 0;
+}
 </pre>
 </div>
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(<span class="org-keyword">defvar</span> <span class="org-variable-name">hello</span> <span class="org-string">"Hello"</span>)
-
-(<span class="org-keyword">defun</span> <span class="org-function-name">hello</span> (name <span class="org-type">&amp;optional</span> greeting)
-  (message <span class="org-string">"%s %s"</span> (<span class="org-keyword">or</span> greeting <span class="org-string">"Hello"</span>) name))
-
-(<span class="org-keyword">setq</span> tab-width 4)
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defvar</span> <span class="org-variable-name">hello</span> <span class="org-string">"Hello"</span>)
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">hello</span> (name <span class="org-type">&amp;optional</span> greeting)
+  (message <span class="org-string">"%s %s"</span> (<span class="org-keyword">or</span> greeting <span class="org-string">"Hello"</span>) name))
+
+(<span class="org-keyword">setq</span> tab-width 4)
 </pre>
 </div>
 
@@ -3153,31 +3216,31 @@ You need <code>htmlize.el</code> in your <code>load-path</code>, for the HTML ex
 </div>
 </div>
 
-<div id="outline-container-orgheadline68" class="outline-3">
-<h3 id="orgheadline68">Source mode</h3>
-<div class="outline-text-3" id="text-orgheadline68">
+<div id="outline-container-sec-20-3" class="outline-3">
+<h3 id="sec-20-3">Source mode</h3>
+<div class="outline-text-3" id="text-20-3">
 <p>
 The following language strings are currently recognized:
 </p>
 
 <p>
-Awk, C, R, Asymptote, Calc, Clojure, CSS, Ditaa, Dot, Emacs Lisp, Forth, Fortran, Gnuplot, Haskell, IO, J, Java, Javascript, LaTeX, Ledger, Lilypond, Lisp, Makefile, Maxima, Matlab, Mscgen, Ocaml, Octave, Org, Perl, Pico Lisp, PlantUML, Python, Ruby, Sass, Scala, Scheme, Screen, Shell Script, Shen, Sql, Sqlite, Stan, ebnf2ps.
+Awk, C, R, Asymptote, Calc, Clojure, CSS, Ditaa, Dot, Emacs Lisp, Fortran, Gnuplot, Haskell, IO, Java, Javascript, LaTeX, Ledger, Lilypond, Lisp, Makefile, Maxima, Matlab, Mscgen, Ocaml, Octave, Org, Perl, Pico Lisp, PlantUML, Python, Ruby, Sass, Scala, Scheme, Screen, Shell Script, Shen, Sql, Sqlite.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline69" class="outline-3">
-<h3 id="orgheadline69">Line break</h3>
-<div class="outline-text-3" id="text-orgheadline69">
+<div id="outline-container-sec-20-4" class="outline-3">
+<h3 id="sec-20-4">Line break</h3>
+<div class="outline-text-3" id="text-20-4">
 <p>
 Code block with long lines:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">testing testing testing testing testing testing testing testing testing testing
-0        1         2         3         4         5         6         7         8         9
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456
+<pre class="src src-emacs-lisp">testing testing testing testing testing testing testing testing testing testing
+0        1         2         3         4         5         6         7         8         9
+123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456
 </pre>
 </div>
 
@@ -3197,9 +3260,9 @@ This block is in scriptsize
 </div>
 </div>
 
-<div id="outline-container-orgheadline70" class="outline-3">
-<h3 id="orgheadline70">Line numbers</h3>
-<div class="outline-text-3" id="text-orgheadline70">
+<div id="outline-container-sec-20-5" class="outline-3">
+<h3 id="sec-20-5">Line numbers</h3>
+<div class="outline-text-3" id="text-20-5">
 <p>
 Both in <code>example</code> and in <code>src</code> snippets, you can add a <code>-n</code> switch to the end of the
 <code>begin</code> line to get the lines numbered:
@@ -3207,8 +3270,8 @@ Both in <code>example</code> and in <code>src</code> snippets, you can add a <co
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="linenr">1: </span>(<span class="org-keyword">defun</span> <span class="org-function-name">org-xor</span> (a b)
-<span class="linenr">2: </span>  <span class="org-doc">"Exclusive or."</span>
+<pre class="src src-emacs-lisp"><span class="linenr">1: </span>(<span class="org-keyword">defun</span> <span class="org-function-name">org-xor</span> (a b)
+<span class="linenr">2: </span>  <span class="org-doc">"Exclusive or."</span>
 </pre>
 </div>
 
@@ -3219,15 +3282,15 @@ be continued in the current one:
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span class="linenr">3: </span>  (<span class="org-keyword">if</span> a (not b) b))
+<pre class="src src-emacs-lisp"><span class="linenr">3: </span>  (<span class="org-keyword">if</span> a (not b) b))
 </pre>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline71" class="outline-3">
-<h3 id="orgheadline71">Callouts</h3>
-<div class="outline-text-3" id="text-orgheadline71">
+<div id="outline-container-sec-20-6" class="outline-3">
+<h3 id="sec-20-6">Callouts</h3>
+<div class="outline-text-3" id="text-20-6">
 <p>
 In literal examples, Org will interpret strings like <code>(ref:name)</code> as labels, and
 use them as targets for special hyperlinks like <code>[[(name)]]</code> (i.e., the reference
@@ -3245,8 +3308,8 @@ parentheses.  Here is an example:
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp"><span id="coderef-sc" class="coderef-off"><span class="linenr">1: </span>(<span class="org-keyword">save-excursion</span>                  <span class="org-comment-delimiter">;</span></span>
-<span id="coderef-jump" class="coderef-off"><span class="linenr">2: </span>  (goto-char (point-min)))       <span class="org-comment-delimiter">;</span></span>
+<pre class="src src-emacs-lisp"><span id="coderef-sc" class="coderef-off"><span class="linenr">1: </span>(<span class="org-keyword">save-excursion</span>                  <span class="org-comment-delimiter">;</span></span>
+<span id="coderef-jump" class="coderef-off"><span class="linenr">2: </span>  (goto-char (point-min)))       <span class="org-comment-delimiter">;</span></span>
 </pre>
 </div>
 
@@ -3258,17 +3321,17 @@ In line <a href="#coderef-sc"class="coderef" onmouseover="CodeHighlightOn(this, 
 </div>
 </div>
 
-<div id="outline-container-orgheadline72" class="outline-2">
-<h2 id="orgheadline72">Math</h2>
-<div class="outline-text-2" id="text-orgheadline72">
+<div id="outline-container-sec-21" class="outline-2">
+<h2 id="sec-21">Math</h2>
+<div class="outline-text-2" id="text-21">
 <p>
 You can embed LaTeX math formatting in Org mode files.
 </p>
 </div>
 
-<div id="outline-container-orgheadline73" class="outline-3">
-<h3 id="orgheadline73">Inline math expressions</h3>
-<div class="outline-text-3" id="text-orgheadline73">
+<div id="outline-container-sec-21-1" class="outline-3">
+<h3 id="sec-21-1">Inline math expressions</h3>
+<div class="outline-text-3" id="text-21-1">
 <p>
 For <b>inline math</b> expressions, use the parentheses notation <code>\(...\)</code>:
 </p>
@@ -3304,9 +3367,9 @@ Don&rsquo;t forget that <code>$</code> is also a valid currency symbol!
 </div>
 </div>
 
-<div id="outline-container-orgheadline74" class="outline-3">
-<h3 id="orgheadline74">Math expressions in display mode</h3>
-<div class="outline-text-3" id="text-orgheadline74">
+<div id="outline-container-sec-21-2" class="outline-3">
+<h3 id="sec-21-2">Math expressions in display mode</h3>
+<div class="outline-text-3" id="text-21-2">
 <p>
 For mathematical expressions which you want to make <b>stand out, centered on their
 own lines</b>, use <code>\[...\]</code>:
@@ -3373,9 +3436,9 @@ The equation may be wrong, but it&rsquo;s a nice one!
 </div>
 </div>
 
-<div id="outline-container-orgheadline75" class="outline-3">
-<h3 id="orgheadline75">Equation numbers</h3>
-<div class="outline-text-3" id="text-orgheadline75">
+<div id="outline-container-sec-21-3" class="outline-3">
+<h3 id="sec-21-3">Equation numbers</h3>
+<div class="outline-text-3" id="text-21-3">
 <p>
 Differently from <code>$...$</code> and <code>\(...\)</code>, an equation environment produces a <b>numbered</b>
 equation to which you can add a label and reference the equation by (label) name
@@ -3414,7 +3477,7 @@ a^2 + b^2 = c^2
 \end{equation}
 
 <p>
-See equation <a href="#orglatexenvironment1">1</a>.
+See equation <a href="#pythag">1</a>.
 </p>
 
 <p>
@@ -3425,8 +3488,10 @@ Only captioned equations are numbered.
 Other alternatives: use
 </p>
 <ul class="org-ul">
-<li><code>\begin{equation*}</code> or</li>
-<li><code>\begin{displaymath}</code> (= the verbose form of the <code>\[...\]</code> construct).</li>
+<li><code>\begin{equation*}</code> or
+</li>
+<li><code>\begin{displaymath}</code> (= the verbose form of the <code>\[...\]</code> construct).
+</li>
 </ul>
 
 <p>
@@ -3436,12 +3501,12 @@ Other alternatives: use
 </div>
 </div>
 
-<div id="outline-container-orgheadline76" class="outline-2">
-<h2 id="orgheadline76">Miscellaneous effects</h2>
-<div class="outline-text-2" id="text-orgheadline76">
-</div><div id="outline-container-orgheadline77" class="outline-3">
-<h3 id="orgheadline77">Include Org files</h3>
-<div class="outline-text-3" id="text-orgheadline77">
+<div id="outline-container-sec-22" class="outline-2">
+<h2 id="sec-22">Miscellaneous effects</h2>
+<div class="outline-text-2" id="text-22">
+</div><div id="outline-container-sec-22-1" class="outline-3">
+<h3 id="sec-22-1">Include Org files</h3>
+<div class="outline-text-3" id="text-22-1">
 <p>
 You can include another Org file and skip its title by using the <code>:lines</code> argument
 to <code>#+INCLUDE</code>:
@@ -3449,7 +3514,7 @@ to <code>#+INCLUDE</code>:
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-org-meta-line">#+INCLUDE: chapter1.org :lines "2-"</span>
+<pre class="src src-org"><span class="org-org-meta-line">#+INCLUDE: "chapter1.org" :lines "2-"</span>
 </pre>
 </div>
 
@@ -3462,9 +3527,9 @@ File inclusion, through INCLUDE keywords, is an <b>export-only feature</b>.
 </div>
 </div>
 
-<div id="outline-container-orgheadline78" class="outline-3">
-<h3 id="orgheadline78">Raw HTML</h3>
-<div class="outline-text-3" id="text-orgheadline78">
+<div id="outline-container-sec-22-2" class="outline-3">
+<h3 id="sec-22-2">Raw HTML</h3>
+<div class="outline-text-3" id="text-22-2">
 <p>
 You can include raw HTML in your Org documents and it will get kept as HTML
 when it&rsquo;s exported.
@@ -3484,9 +3549,9 @@ Similarly, you can incorporate JS or do anything else you can do in a Web page
 </p>
 </div>
 
-<div id="outline-container-orgheadline131" class="outline-4">
-<h4 id="orgheadline131">Native DIV blocks</h4>
-<div class="outline-text-4" id="text-orgheadline131">
+<div id="outline-container-sec-22-2-1" class="outline-4">
+<h4 id="sec-22-2-1">Native DIV blocks</h4>
+<div class="outline-text-4" id="text-22-2-1">
 <p>
 You can create named classes (to get style control from your CSS) with:
 </p>
@@ -3507,7 +3572,7 @@ Finally, you can include an HTML file verbatim (during export) with:
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-org-meta-line">#+INCLUDE: file.html html</span>
+<pre class="src src-org"><span class="org-org-meta-line">#+INCLUDE: "file.html" export html</span>
 </pre>
 </div>
 
@@ -3518,9 +3583,9 @@ Don&rsquo;t edit the exported HTML file!
 </div>
 </div>
 
-<div id="outline-container-orgheadline79" class="outline-3">
-<h3 id="orgheadline79">Raw LaTeX</h3>
-<div class="outline-text-3" id="text-orgheadline79">
+<div id="outline-container-sec-22-3" class="outline-3">
+<h3 id="sec-22-3">Raw LaTeX</h3>
+<div class="outline-text-3" id="text-22-3">
 <p>
 You can also use raw LaTeX. XXX
 </p>
@@ -3532,9 +3597,9 @@ Text can be preformatted (in a fixed-width font).
 </div>
 </div>
 
-<div id="outline-container-orgheadline80" class="outline-2">
-<h2 id="orgheadline80">Footnotes </h2>
-<div class="outline-text-2" id="text-orgheadline80">
+<div id="outline-container-sec-23" class="outline-2">
+<h2 id="sec-23">Footnotes </h2>
+<div class="outline-text-2" id="text-23">
 <div class="org-src-container">
 
 <pre class="src src-org">It is possible to define named footnotes<span class="org-org-footnote">[fn:myfootnote]</span>, or ones with automatic
@@ -3543,38 +3608,39 @@ anchors<span class="org-org-footnote">[fn:2]</span>.
 </div>
 
 <p>
-It is possible to define named footnotes<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>, or ones with automatic
-anchors<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.
-It is possible to define named footnotes<sup><a id="fnr.1.100" class="footref" href="#fn.1">1</a></sup>, or ones with automatic
-anchors<sup><a id="fnr.2.100" class="footref" href="#fn.2">2</a></sup>.
+It is possible to define named footnotes<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>, or ones with automatic
+anchors<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+It is possible to define named footnotes<sup><a id="fnr.1.100" name="fnr.1.100" class="footref" href="#fn.1">1</a></sup>, or ones with automatic
+anchors<sup><a id="fnr.2.100" name="fnr.2.100" class="footref" href="#fn.2">2</a></sup>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline81" class="outline-2">
-<h2 id="orgheadline81">Useful extensions</h2>
-<div class="outline-text-2" id="text-orgheadline81">
-</div><div id="outline-container-orgheadline82" class="outline-3">
-<h3 id="orgheadline82">Todo extension</h3>
-<div class="outline-text-3" id="text-orgheadline82">
-</div><div id="outline-container-orgheadline132" class="outline-4">
-<h4 id="orgheadline132">Dates</h4>
-<div class="outline-text-4" id="text-orgheadline132">
+<div id="outline-container-sec-24" class="outline-2">
+<h2 id="sec-24">Useful extensions</h2>
+<div class="outline-text-2" id="text-24">
+</div><div id="outline-container-sec-24-1" class="outline-3">
+<h3 id="sec-24-1">Todo extension</h3>
+<div class="outline-text-3" id="text-24-1">
+</div><div id="outline-container-sec-24-1-1" class="outline-4">
+<h4 id="sec-24-1-1">Dates</h4>
+<div class="outline-text-4" id="text-24-1-1">
 <p>
-Timestamps: <span class="timestamp-wrapper"><span class="timestamp">[2014-01-16 Thu] </span></span> and <span class="timestamp-wrapper"><span class="timestamp">&lt;2014-01-16 Thu&gt;</span></span>.
+Timestamps: <span class="timestamp-wrapper"><span class="timestamp">[2014-01-16 Thu]</span></span> and <span class="timestamp-wrapper"><span class="timestamp">&lt;2014-01-16 Thu&gt;</span></span>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline133" class="outline-4">
-<h4 id="orgheadline133"><span class="todo TODO">TODO</span> We need to achieve&#x2026;</h4>
+<div id="outline-container-sec-24-1-2" class="outline-4">
+<h4 id="sec-24-1-2"><span class="todo TODO">TODO</span> We need to achieve&#x2026;</h4>
 </div>
 
-<div id="outline-container-orgheadline134" class="outline-4">
-<h4 id="orgheadline134"><span class="done DONE">DONE</span> <span class="priority">[A]</span> Buy GTD book&#xa0;&#xa0;&#xa0;<span class="tag"><span class="online">online</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline134">
+<div id="outline-container-sec-24-1-3" class="outline-4">
+<h4 id="sec-24-1-3"><span class="done DONE">DONE</span> Buy GTD book&#xa0;&#xa0;&#xa0;<span class="tag"><span class="online">online</span></span></h4>
+<div class="outline-text-4" id="text-24-1-3">
 <ul class="org-ul">
-<li>State &ldquo;TODO&rdquo;        -&gt;  &ldquo;DONE&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2014-01-16 Thu 09:52]</span></span></li>
+<li>State &ldquo;TODO&rdquo;        -&gt;  &ldquo;DONE&rdquo;       <span class="timestamp-wrapper"><span class="timestamp">[2014-01-16 Thu 09:52]</span></span>
+</li>
 </ul>
 
 <p>
@@ -3588,9 +3654,9 @@ items.
 </div>
 </div>
 
-<div id="outline-container-orgheadline135" class="outline-4">
-<h4 id="orgheadline135"><span class="todo TODO">TODO</span> <span class="priority">[A]</span> Read GTD book</h4>
-<div class="outline-text-4" id="text-orgheadline135">
+<div id="outline-container-sec-24-1-4" class="outline-4">
+<h4 id="sec-24-1-4"><span class="todo TODO">TODO</span> Read GTD book</h4>
+<div class="outline-text-4" id="text-24-1-4">
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">SCHEDULED:</span> <span class="timestamp"><2014-09-11 Thu></span></span></p>
 
 <p>
@@ -3610,10 +3676,11 @@ That can be changed by adding such a line (into your Org document):
 </div>
 </div>
 
-<div id="outline-container-orgheadline136" class="outline-4 hsCollapsed">
-<h4 id="orgheadline136"><span class="todo TODO">TODO</span> <span class="priority">[B]</span> Apply GTD methodoloy</h4>
-<div class="outline-text-4" id="text-orgheadline136">
+<div id="outline-container-sec-24-1-5" class="outline-4 hsCollapsed">
+<h4 id="sec-24-1-5"><span class="todo TODO">TODO</span> Apply GTD methodoloy</h4>
+<div class="outline-text-4" id="text-24-1-5">
 <p><span class="timestamp-wrapper"><span class="timestamp-kwd">DEADLINE:</span> <span class="timestamp"><2014-12-01 Mon></span></span></p>
+
 <p>
 This section will be collapsed when loading the page because the entry has the
 value <code>hsCollapsed</code> for the property <code>:HTML_CONTAINER_CLASS:</code>.
@@ -3625,9 +3692,9 @@ Powerful, no?
 </div>
 </div>
 
-<div id="outline-container-orgheadline137" class="outline-4">
-<h4 id="orgheadline137">Some note&#xa0;&#xa0;&#xa0;<span class="tag"><span class="computer">computer</span>&#xa0;<span class="write">write</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline137">
+<div id="outline-container-sec-24-1-6" class="outline-4">
+<h4 id="sec-24-1-6">Some note&#xa0;&#xa0;&#xa0;<span class="tag"><span class="computer">computer</span>&#xa0;<span class="write">write</span></span></h4>
+<div class="outline-text-4" id="text-24-1-6">
 <p>
 You can add tags to any entry, and hightlight all entries having some specific
 tag by clicking on the buttons made accessible to you in the &ldquo;Dashboard&rdquo;.
@@ -3635,9 +3702,9 @@ tag by clicking on the buttons made accessible to you in the &ldquo;Dashboard&rd
 </div>
 </div>
 
-<div id="outline-container-orgheadline138" class="outline-4">
-<h4 id="orgheadline138">Weekly review&#xa0;&#xa0;&#xa0;<span class="tag"><span class="computer">computer</span></span></h4>
-<div class="outline-text-4" id="text-orgheadline138">
+<div id="outline-container-sec-24-1-7" class="outline-4">
+<h4 id="sec-24-1-7">Weekly review&#xa0;&#xa0;&#xa0;<span class="tag"><span class="computer">computer</span></span></h4>
+<div class="outline-text-4" id="text-24-1-7">
 <p>
 Now, you can even make your weekly review in the HTML export&#x2026; Press the <code>r</code> key
 to start entering the &ldquo;review mode&rdquo; where all but one active entry are
@@ -3647,16 +3714,16 @@ collapsed, so that you can really focus on one item at a time!
 </div>
 </div>
 
-<div id="outline-container-orgheadline83" class="outline-3">
-<h3 id="orgheadline83">Bigblow extension</h3>
-<div class="outline-text-3" id="text-orgheadline83">
+<div id="outline-container-sec-24-2" class="outline-3">
+<h3 id="sec-24-2">Bigblow extension</h3>
+<div class="outline-text-3" id="text-24-2">
 <p>
 The string <code>fixme</code> (in <b>upper case</b>) gets replaced by a &ldquo;Fix Me!&rdquo; image:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-org"><span class="org-leuven-highlight">FIXME</span> Delete this...
+<pre class="src src-org"><span class="org-leuven-highlight-todo-items">FIXME</span> Delete this...
 </pre>
 </div>
 
@@ -3667,9 +3734,9 @@ FIXME Delete this&#x2026;
 </div>
 </div>
 
-<div id="outline-container-orgheadline84" class="outline-2">
-<h2 id="orgheadline84">Graphs with Graphviz</h2>
-<div class="outline-text-2" id="text-orgheadline84">
+<div id="outline-container-sec-25" class="outline-2">
+<h2 id="sec-25">Graphs with Graphviz</h2>
+<div class="outline-text-2" id="text-25">
 <p>
 To enable the Graphviz extension, we have to add it to the extensions list in
 the <code>org-babel-load-languages</code> variable.
@@ -3677,8 +3744,8 @@ the <code>org-babel-load-languages</code> variable.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(add-to-list 'org-babel-load-languages '(dot . t))
-(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+<pre class="src src-emacs-lisp">(add-to-list 'org-babel-load-languages '(dot . t))
+(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
 </pre>
 </div>
 
@@ -3687,16 +3754,16 @@ It uses directly the <code>dot</code> command to process DOT language.
 </p>
 </div>
 
-<div id="outline-container-orgheadline85" class="outline-3">
-<h3 id="orgheadline85">Undirected</h3>
-<div class="outline-text-3" id="text-orgheadline85">
+<div id="outline-container-sec-25-1" class="outline-3">
+<h3 id="sec-25-1">Undirected</h3>
+<div class="outline-text-3" id="text-25-1">
 <div class="org-src-container">
 
 <pre class="src src-org"><span class="org-org-block-begin-line">#+begin_src dot :file images/graph.png :cmdline -Tpng</span>
-graph <span class="org-function-name">foo</span> {
-        <span class="org-string">"bar"</span> -- <span class="org-string">"baz"</span>;
+<span class="org-org-block-background">graph </span><span class="org-function-name"><span class="org-org-block-background">foo</span></span><span class="org-org-block-background"> {
+        </span><span class="org-string"><span class="org-org-block-background">"bar"</span></span><span class="org-org-block-background"> -- </span><span class="org-string"><span class="org-org-block-background">"baz"</span></span><span class="org-org-block-background">;
 }
-<span class="org-org-block-end-line">#+end_src</span>
+</span><span class="org-org-block-end-line">#+end_src</span>
 </pre>
 </div>
 
@@ -3716,9 +3783,9 @@ graph <span class="org-function-name">foo</span> {
 </div>
 </div>
 
-<div id="outline-container-orgheadline86" class="outline-3">
-<h3 id="orgheadline86">Directed</h3>
-<div class="outline-text-3" id="text-orgheadline86">
+<div id="outline-container-sec-25-2" class="outline-3">
+<h3 id="sec-25-2">Directed</h3>
+<div class="outline-text-3" id="text-25-2">
 <div class="org-src-container">
 
 <pre class="src src-dot">digraph <span class="org-function-name">foo</span> {
@@ -3736,9 +3803,9 @@ graph <span class="org-function-name">foo</span> {
 </div>
 </div>
 
-<div id="outline-container-orgheadline87" class="outline-2">
-<h2 id="orgheadline87">Graphs with R</h2>
-<div class="outline-text-2" id="text-orgheadline87">
+<div id="outline-container-sec-26" class="outline-2">
+<h2 id="sec-26">Graphs with R</h2>
+<div class="outline-text-2" id="text-26">
 <p>
 The output from the <b>execution</b> of programs, scripts or commands can be inserted
 in the document itself, allowing you to work in the <i>reproducible research</i>
@@ -3752,8 +3819,8 @@ the <code>org-babel-load-languages</code> variable.
 
 <div class="org-src-container">
 
-<pre class="src src-emacs-lisp">(add-to-list 'org-babel-load-languages '(R . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Requires R and ess-mode.</span>
-(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+<pre class="src src-emacs-lisp">(add-to-list 'org-babel-load-languages '(R . t)) <span class="org-comment-delimiter">; </span><span class="org-comment">Requires R and ess-mode.</span>
+(org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
 </pre>
 </div>
 
@@ -3762,86 +3829,86 @@ It uses directly the <code>R</code> command to process R language.
 </p>
 </div>
 
-<div id="outline-container-orgheadline88" class="outline-3">
-<h3 id="orgheadline88">Example</h3>
-<div class="outline-text-3" id="text-orgheadline88">
+<div id="outline-container-sec-26-1" class="outline-3">
+<h3 id="sec-26-1">Example</h3>
+<div class="outline-text-3" id="text-26-1">
 <p>
 Data to be charted:
 </p>
 
-<table id="orgtable1" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<table id="data" border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
 <colgroup>
-<col  class="org-right" />
+<col  class="right" />
 
-<col  class="org-right" />
+<col  class="right" />
 </colgroup>
 <thead>
 <tr>
-<th scope="col" class="org-right">Month</th>
-<th scope="col" class="org-right">Degrees</th>
+<th scope="col" class="right">Month</th>
+<th scope="col" class="right">Degrees</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="org-right">01</td>
-<td class="org-right">3.8</td>
+<td class="right">01</td>
+<td class="right">3.8</td>
 </tr>
 
 <tr>
-<td class="org-right">02</td>
-<td class="org-right">4.1</td>
+<td class="right">02</td>
+<td class="right">4.1</td>
 </tr>
 
 <tr>
-<td class="org-right">03</td>
-<td class="org-right">6.3</td>
+<td class="right">03</td>
+<td class="right">6.3</td>
 </tr>
 
 <tr>
-<td class="org-right">04</td>
-<td class="org-right">9.0</td>
+<td class="right">04</td>
+<td class="right">9.0</td>
 </tr>
 
 <tr>
-<td class="org-right">05</td>
-<td class="org-right">11.9</td>
+<td class="right">05</td>
+<td class="right">11.9</td>
 </tr>
 
 <tr>
-<td class="org-right">06</td>
-<td class="org-right">15.1</td>
+<td class="right">06</td>
+<td class="right">15.1</td>
 </tr>
 
 <tr>
-<td class="org-right">07</td>
-<td class="org-right">17.1</td>
+<td class="right">07</td>
+<td class="right">17.1</td>
 </tr>
 
 <tr>
-<td class="org-right">08</td>
-<td class="org-right">17.4</td>
+<td class="right">08</td>
+<td class="right">17.4</td>
 </tr>
 
 <tr>
-<td class="org-right">09</td>
-<td class="org-right">15.7</td>
+<td class="right">09</td>
+<td class="right">15.7</td>
 </tr>
 
 <tr>
-<td class="org-right">10</td>
-<td class="org-right">11.8</td>
+<td class="right">10</td>
+<td class="right">11.8</td>
 </tr>
 
 <tr>
-<td class="org-right">11</td>
-<td class="org-right">7.7</td>
+<td class="right">11</td>
+<td class="right">7.7</td>
 </tr>
 
 <tr>
-<td class="org-right">12</td>
-<td class="org-right">4.8</td>
+<td class="right">12</td>
+<td class="right">4.8</td>
 </tr>
 </tbody>
 </table>
@@ -3852,7 +3919,7 @@ Code:
 
 <div class="org-src-container">
 
-<pre class="src src-R" id="orgsrcblock1"><span class="org-ess-function-call">plot</span><span class="org-builtin">(</span>data, type<span class="org-constant">=</span><span class="org-string">"b"</span>, bty<span class="org-constant">=</span><span class="org-string">"l"</span>, col<span class="org-constant">=</span><span class="org-ess-function-call">c</span><span class="org-builtin">(</span><span class="org-string">"#ABD249"</span><span class="org-builtin">)</span>, las<span class="org-constant">=</span><span class="org-ess-numbers">1</span>, lwd<span class="org-constant">=</span><span class="org-ess-numbers">4</span><span class="org-builtin">)</span>
+<pre class="src src-R" id="R-plot"><span class="org-ess-function-call">plot</span><span class="org-builtin">(</span>data, type<span class="org-constant">=</span><span class="org-string">"b"</span>, bty<span class="org-constant">=</span><span class="org-string">"l"</span>, col<span class="org-constant">=</span><span class="org-ess-function-call">c</span><span class="org-builtin">(</span><span class="org-string">"#ABD249"</span><span class="org-builtin">)</span>, las<span class="org-constant">=</span><span class="org-ess-numbers">1</span>, lwd<span class="org-constant">=</span><span class="org-ess-numbers">4</span><span class="org-builtin">)</span>
 <span class="org-ess-function-call">grid</span><span class="org-builtin">(</span>nx<span class="org-constant">=</span><span class="org-type">NULL</span>, ny<span class="org-constant">=</span><span class="org-type">NULL</span>, col<span class="org-constant">=</span><span class="org-ess-function-call">c</span><span class="org-builtin">(</span><span class="org-string">"#E8E8E8"</span><span class="org-builtin">)</span>, lwd<span class="org-constant">=</span><span class="org-ess-numbers">1</span><span class="org-builtin">)</span>
 <span class="org-ess-function-call">legend</span><span class="org-builtin">(</span><span class="org-string">"bottom"</span>, legend<span class="org-constant">=</span><span class="org-ess-function-call">c</span><span class="org-builtin">(</span><span class="org-string">"Degrees"</span><span class="org-builtin">)</span>, col<span class="org-constant">=</span><span class="org-ess-function-call">c</span><span class="org-builtin">(</span><span class="org-string">"#ABD249"</span><span class="org-builtin">)</span>, pch<span class="org-constant">=</span><span class="org-ess-function-call">c</span><span class="org-builtin">(</span><span class="org-ess-numbers">19</span><span class="org-builtin">))</span>
 </pre>
@@ -3871,32 +3938,33 @@ The resulting chart:
 </div>
 </div>
 
-<div id="outline-container-orgheadline89" class="outline-2">
-<h2 id="orgheadline89">Citations</h2>
-<div class="outline-text-2" id="text-orgheadline89">
+<div id="outline-container-sec-27" class="outline-2">
+<h2 id="sec-27">Citations</h2>
+<div class="outline-text-2" id="text-27">
 <p>
 Cross-referenced to bibliography.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline90" class="outline-2">
-<h2 id="orgheadline90">Appendix</h2>
-<div class="outline-text-2" id="text-orgheadline90">
+<div id="outline-container-sec-28" class="outline-2">
+<h2 id="sec-28">Appendix</h2>
+<div class="outline-text-2" id="text-28">
 <p>
 Special sections.
 </p>
 </div>
 
-<div id="outline-container-orgheadline91" class="outline-3">
-<h3 id="orgheadline91">Index</h3>
-<div class="outline-text-3" id="text-orgheadline91">
+<div id="outline-container-sec-28-1" class="outline-3">
+<h3 id="sec-28-1">Index</h3>
+<div class="outline-text-3" id="text-28-1">
 <p>
 Index (or list of acronyms).
 </p>
 
 <ul class="org-ul">
-<li>Write index entries</li>
+<li>Write index entries
+</li>
 </ul>
 
 <p>
@@ -3904,70 +3972,75 @@ Note that multi-entry terms generate separate index entries.
 </p>
 
 <ul class="org-ul">
-<li>Place the index at the desired location</li>
+<li>Place the index at the desired location
+</li>
 
-<li>Produce the index by updating <code>org-latex-pdf-process</code></li>
+<li>Produce the index by updating <code>org-latex-pdf-process</code>
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline92" class="outline-3">
-<h3 id="orgheadline92">Bibliography</h3>
-<div class="outline-text-3" id="text-orgheadline92">
+<div id="outline-container-sec-28-2" class="outline-3">
+<h3 id="sec-28-2">Bibliography</h3>
+<div class="outline-text-3" id="text-28-2">
 <p>
 The bibliography&#x2026;
 </p>
 
 <ul class="org-ul">
 <li>Eric Steven Raymond. The Art of Unix Programming. Addison-Wesley. ISBN
-0-13-142901-9.</li>
+0-13-142901-9.
+</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgheadline93" class="outline-3">
-<h3 id="orgheadline93">Glossary</h3>
-<div class="outline-text-3" id="text-orgheadline93">
+<div id="outline-container-sec-28-3" class="outline-3">
+<h3 id="sec-28-3">Glossary</h3>
+<div class="outline-text-3" id="text-28-3">
 <p>
-Glossaries are optional.  Glossaries entries are an example of <a href="#orgheadline27">definition lists</a>.
+Glossaries are optional.  Glossaries entries are an example of <a href="#sec-8-4">definition lists</a>.
 </p>
 
 <dl class="org-dl">
-<dt>A glossary term</dt><dd>The corresponding (indented) definition.</dd>
+<dt> A glossary term </dt><dd>     The corresponding (indented) definition.
+</dd>
 
-<dt>A second glossary term</dt><dd>The corresponding (indented) definition.</dd>
+<dt> A second glossary term </dt><dd>     The corresponding (indented) definition.
+</dd>
 </dl>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgheadline94" class="outline-2">
-<h2 id="orgheadline94">Contributing</h2>
-<div class="outline-text-2" id="text-orgheadline94">
-</div><div id="outline-container-orgheadline95" class="outline-3">
-<h3 id="orgheadline95">Issues</h3>
-<div class="outline-text-3" id="text-orgheadline95">
+<div id="outline-container-sec-29" class="outline-2">
+<h2 id="sec-29">Contributing</h2>
+<div class="outline-text-2" id="text-29">
+</div><div id="outline-container-sec-29-1" class="outline-3">
+<h3 id="sec-29-1">Issues</h3>
+<div class="outline-text-3" id="text-29-1">
 <p>
 Report issues and suggest features and improvements on the <a href="https://github.com/fniessen/refcard-org-mode/issues/new">GitHub issue tracker</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline96" class="outline-3">
-<h3 id="orgheadline96">Patches</h3>
-<div class="outline-text-3" id="text-orgheadline96">
+<div id="outline-container-sec-29-2" class="outline-3">
+<h3 id="sec-29-2">Patches</h3>
+<div class="outline-text-3" id="text-29-2">
 <p>
 I love contributions!  Patches under any form are always welcome!
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgheadline97" class="outline-3">
-<h3 id="orgheadline97">Donations</h3>
-<div class="outline-text-3" id="text-orgheadline97">
+<div id="outline-container-sec-29-3" class="outline-3">
+<h3 id="sec-29-3">Donations</h3>
+<div class="outline-text-3" id="text-29-3">
 <p>
 If you like the refcard-org-mode project, you can show your appreciation and
-help support future development by making a <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=VCVAS6KPDQ4JC&amp;lc=BE&amp;item_number=refcard-org-mode&amp;currency_code=EUR&amp;bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted">donation</a> through PayPal.
+help support future development by making a <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard-org-mode&currency_code=EUR&bn=PP-DonationsBF:btn_donate_LG.gif:NonHosted">donation</a> through PayPal.
 </p>
 
 <p>
@@ -3978,11 +4051,11 @@ beer and as in speech.
 </div>
 </div>
 
-<div id="outline-container-orgheadline98" class="outline-2">
-<h2 id="orgheadline98">License</h2>
-<div class="outline-text-2" id="text-orgheadline98">
+<div id="outline-container-sec-30" class="outline-2">
+<h2 id="sec-30">License</h2>
+<div class="outline-text-2" id="text-30">
 <p>
-Copyright (C) 2014-2016 Fabrice Niessen.
+Copyright (C) 2014-2017 Fabrice Niessen.
 </p>
 
 <p>
@@ -4009,11 +4082,10 @@ this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.
 </p>
 
 <a href="http://opensource.org/licenses/GPL-3.0">
-  <img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
+<img src="http://img.shields.io/:license-gpl-blue.svg" alt=":license-gpl-blue.svg" />
 </a>
-
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VCVAS6KPDQ4JC&lc=BE&item_number=refcard%2dorg%2dmode&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted">
-  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
+<img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="btn_donate_LG.gif" />
 </a>
 </div>
 </div>
@@ -4021,24 +4093,25 @@ this program. If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
 
-<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
 Extensively used in large documents.
-</p></div></div>
+</p></div>
 
-<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
 veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
 commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
 non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-</p></div></div>
+</p></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Fabrice Niessen</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.1.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
