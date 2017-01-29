@@ -123,7 +123,7 @@ feature; for example:
 
 ** List of figures
 
-~#+TOC: figures~ is not implemented yet in the HMTL backend.
+~#+TOC: figures~ is not implemented yet in the HTML backend.
 
 ** List of tables
 
