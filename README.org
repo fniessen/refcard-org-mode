@@ -178,7 +178,7 @@ demarcates paragraphs.
 
 #+begin_src org
 By entering two consecutive backslashes, \\
-you can force to break lines
+you can force a line break
 without starting a new paragraph.
 #+end_src
 
