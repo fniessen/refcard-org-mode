@@ -1210,7 +1210,7 @@ For PDF (LaTeX), one  solution is to surround the code  block such as:
 #+begin_src R
 print("This block is in scriptsize")
 #+end_src
-#+latex: \normalize
+#+latex: \normalsize
 
 ** Line numbers
 
