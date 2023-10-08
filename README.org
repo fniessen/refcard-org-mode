@@ -25,16 +25,13 @@
 
 # See https://tutorialtodoapp.readthedocs.org/en/latest/ for nice home page!
 
-#+begin_sidebar
 *You will learn to:*
 
 - write your docs in Org mode
 - create tables
 - create custom code blocks
 - and much more!
-#+end_sidebar
 
-#+begin_abstract
 This is an Org mode document, using the ~.org~ extension (supported by GitHub).
 
 *Org mode* is an easy-to-write /plain text/ formatting syntax for authoring notes,
@@ -45,7 +42,6 @@ since Org mode 7), using [[https://github.com/fniessen/org-html-themes][ReadTheO
 
 Reading through all the [[http://orgmode.org/org.pdf][documentation]] is highly recommended, but for the truly
 impatient, following are some quick steps to get started.
-#+end_abstract
 
 # #+begin_abstract
 # This paper talks about...
