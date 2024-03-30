@@ -53,8 +53,8 @@ impatient, following are some quick steps to get started.
 
 * ADVERT: Elevate your Emacs skills in Paris, Rotterdam, Leuven or Valencia!
 
-*Unlock the power of Emacs in Rotterdam!  Join my next exclusive "Emacs Boost"
-course on March 13th to 15th, 2024!*
+*Unlock the power of Emacs in Valencia!  Join my next exclusive "Emacs Boost"
+course on April 11th to 12th, 2024!*
 
 Ready to /supercharge your productivity/ and become an Emacs ninja?  Look no
 further!
@@ -66,8 +66,8 @@ further!
 - And much more!
 
 *Upcoming course details:*
-- *Date:* March 13th to 15th (Wed to Fri)
-- *Location:* Rotterdam, The Netherlands
+- *Date:* April 11th to 12th (Thu + Fri)
+- *Location:* Valencia, Spain
 - *Audience:* Open to anyone interested in Emacs, from beginners to advanced
   users.
 
@@ -83,7 +83,7 @@ Seats are limited, so /reserve yours today/.
 Visit https://emacsboost.com/en/ for more information, other dates and other
 locations, and to /reserve your seat/.
 
-/See you in Rotterdam!/  [[https://emacsboost.com/en/][#EmacsBoostRotterdam]]
+/See you in Valencia!/  [[https://emacsboost.com/en/][#EmacsBoostValencia]]
 
 * Reference card
 
