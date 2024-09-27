@@ -653,13 +653,13 @@ Books usually align/float images on the right/left of the contents.
 *** Image is centered
 
 #+name: test
-#+begin_src R :exports results :file-ext pdf :results graphics :width 8 :height 3
+#+begin_src R :exports results :file images/test.pdf :results graphics :width 8 :height 3
 plot(runif(100))
 #+end_src
 
 #+attr_latex: :float t :placement [b]
 #+results: test
-[[file:test.pdf]]
+[[file:images/test.pdf]]
 
 ** Image attributes and values
 
