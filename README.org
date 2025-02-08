@@ -405,7 +405,7 @@ Columns are automatically aligned:
 If you want to override the automatic alignment, use ~<r>~, ~<c>~ or ~<l>~.
 
 #+begin_src org
-,#+CAPTION: Table with aligned columns
+,#+caption: Table with aligned columns
 |          <r> | <c>          | <l>          |
 |            1 | 2            | 3            |
 |        Right | Center       | Left         |
@@ -420,7 +420,7 @@ You can create tables with an header row (by using an horizontal line of dashes
 to separate it from the rest of the table).
 
 #+begin_src org
-#+CAPTION: Table with an header row
+#+caption: Table with an header row
 | Name of column 1 | Name of column 2 | Name of column 3 |
 |------------------+------------------+------------------|
 | Top left         | Top middle       |                  |
@@ -607,8 +607,8 @@ See chapter [[#links][Links]].
 To add a link to a figure (e.g., "See Figure 1"), just do:
 
 #+begin_src org
-,#+name: fig
 ,#+caption: caption
+,#+name: fig
 [[file:fig.png]]
 
 See figure [[fig]].
